@@ -1,5 +1,7 @@
 extends "res://Assets/Scenes/Item.gd"
 
+class_name PirateShip
+
 func _ready():
 	self.modulate = Color.CRIMSON
 

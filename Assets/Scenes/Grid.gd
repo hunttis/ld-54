@@ -13,18 +13,14 @@ extends Node2D
 
 var createCooldownMAX = 2
 var createCooldown = 2
-var selectedColumn = 0
+var oceanCurrentDirection = Vector2.ZERO
 
-var items = []
+var items := GridItems.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(0, rows):
-		var row = []
-		for c in range(0, columns + 1):
-			row.push_back(null)
-		items.push_back(row)
-		
+	items.init(rows, columns)
+
 	var fishing_ship = fishing_ship_scene.instantiate()
 	place_typed_item_grid(1, 0, fishing_ship)
 	
@@ -53,21 +49,15 @@ func _input(event: InputEvent) -> void:
 			place_item(3)
 		if event.keycode == KEY_5:
 			place_item(4)
-		if event.keycode == KEY_LEFT:
-			print("Left!")
-			selectedColumn -= -1
-		if event.keycode == KEY_RIGHT:
-			print("Right!")
-			selectedColumn += 1
-			
-		selectedColumn = clampi(selectedColumn, 0, columns - 1)
-		
 		if event.keycode == KEY_UP:
-			print("Up!")
-			ocean_current(true)
+			print("Left!")
+			oceanCurrentDirection = Vector2.UP
+		if event.keycode == KEY_RIGHT:
+			oceanCurrentDirection = Vector2.RIGHT
 		if event.keycode == KEY_DOWN:
-			print("Down!")
-			ocean_current(false)
+			oceanCurrentDirection = Vector2.DOWN
+		if event.keycode == KEY_LEFT:
+			oceanCurrentDirection = Vector2.LEFT
 		
 
 func place_item(row: int) -> Item:
@@ -82,7 +72,7 @@ func place_item_grid(row: int, column: int, state = Item.State.Movable) -> Item:
 	item.position.y = item_y
 	item.state = state
 	items_node.add_child(item)
-	items[row][column] = item
+	items.set_at(row, column, item)
 	return item
 
 func place_typed_item_grid(row: int, column: int, item: Item) -> Item:
@@ -92,8 +82,12 @@ func place_typed_item_grid(row: int, column: int, item: Item) -> Item:
 	item.position.x = item_x
 	item.position.y = item_y
 	items_node.add_child(item)
-	items[row][column] = item
+	items.set_at(row, column, item)
+	item.destroyed.connect(_on_item_destroyed)
 	return item
+
+func _on_item_destroyed(item: Item):
+	pass
 
 func advance() -> void:	
 	for row in range(0, rows):
@@ -109,6 +103,7 @@ func advance() -> void:
 		cleanup_row(row)
 		
 	create_items()
+	apply_ocean_current()
 
 func advance_row(row_i: int) -> void:
 	var row = items[row_i]
@@ -168,7 +163,7 @@ func create_items() -> void:
 			
 			place_typed_item_grid(randomRows[i], 0, new_item)
 						
-func ocean_current(goingUp: bool) -> void: 
-	for row in items:
-		var item = row[selectedColumn]
-		print("Current: ", selectedColumn, " would be going up? ", up)
+func apply_ocean_current() -> void: 
+	for row in items.size():
+		for col in row.size():
+			item.can_move(row, col, oceanCurrentDirection, items)

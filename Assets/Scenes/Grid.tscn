@@ -19,7 +19,7 @@ offset_bottom = 40.0
 layout_mode = 2
 offset_right = 656.0
 offset_bottom = 656.0
-columns = 6
+columns = 5
 
 [node name="TextureRect" type="TextureRect" parent="GridControl/Container"]
 layout_mode = 2
@@ -118,50 +118,6 @@ layout_mode = 2
 texture = ExtResource("2_ac22v")
 
 [node name="TextureRect25" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect26" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect27" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect28" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect29" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect30" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect31" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect32" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect33" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect34" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect35" type="TextureRect" parent="GridControl/Container"]
-layout_mode = 2
-texture = ExtResource("2_ac22v")
-
-[node name="TextureRect36" type="TextureRect" parent="GridControl/Container"]
 layout_mode = 2
 texture = ExtResource("2_ac22v")
 
