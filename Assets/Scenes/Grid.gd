@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var item_scene = preload("res://Assets/Scenes/Item.tscn")
+@onready var fishing_ship_scene = preload("res://Assets/Scenes/Items/FishingShip.tscn")
 @onready var items_node = $Items
 
 @export var rows = 5
@@ -19,7 +20,11 @@ func _ready() -> void:
 		
 	var item1 = place_item_grid(0, 0, Item.State.Movable)
 	var item2 = place_item_grid(0, 2, Item.State.Immobile)
-	var item3 = place_item_grid(0, 3)
+	var item3 = place_item_grid(0, 3, Item.State.Movable)
+	
+	
+	var fishing_ship = fishing_ship_scene.instantiate()
+	place_typed_item_grid(1, 0, fishing_ship)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
@@ -51,6 +56,16 @@ func place_item_grid(row: int, column: int, state = Item.State.Movable) -> Item:
 	item.position.x = item_x
 	item.position.y = item_y
 	item.state = state
+	items_node.add_child(item)
+	items[row][column] = item
+	return item
+	
+func place_typed_item_grid(row: int, column: int, item: Item) -> Item:
+	var item_x = cell_size * column + cell_size / 2
+	var item_y = cell_size * row + cell_size / 2
+	# TODO: grid gap size
+	item.position.x = item_x
+	item.position.y = item_y
 	items_node.add_child(item)
 	items[row][column] = item
 	return item
