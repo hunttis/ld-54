@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://iglduxfsjxr"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Game name" type="RichTextLabel" parent="."]
+offset_left = 534.0
+offset_top = 309.0
+offset_right = 646.0
+offset_bottom = 343.0
+text = "Game name
+"
