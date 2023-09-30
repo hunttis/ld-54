@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqors87qx5gx2"]
+[gd_scene load_steps=5 format=3 uid="uid://ch7s32bfab702"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Items/PirateShip.gd" id="1_atbfr"]
 [ext_resource type="Texture2D" uid="uid://cm0xuy2v7qkb0" path="res://Assets/Images/star.png" id="1_kox3e"]
@@ -21,3 +21,4 @@ animations = [{
 [node name="PirateShip" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_31qpm")
 script = ExtResource("1_atbfr")
+health = 5

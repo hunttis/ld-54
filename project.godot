@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="ld-54"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Assets/Scenes/PlayMode.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
 
 driver/mix_rate.web=44100
+
+[autoload]
+
+Global="*res://Assets/Global/Global.gd"
+Events="*res://Assets/Global/Events.gd"
 
 [display]
 

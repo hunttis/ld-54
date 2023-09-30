@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cod8mgrad7pu6"]
+[gd_scene load_steps=4 format=3 uid="uid://cod8mgrad7pu6"]
 
+[ext_resource type="Script" path="res://Assets/Scenes/PlayMode.gd" id="1_2god3"]
 [ext_resource type="PackedScene" uid="uid://bdgsptuj5gtfj" path="res://Assets/Scenes/Grid.tscn" id="1_i5qmb"]
+[ext_resource type="PackedScene" uid="uid://dgpv1g6tdho7a" path="res://Assets/UI/UI.tscn" id="2_m27sc"]
 
 [node name="PlayMode" type="Node2D"]
+script = ExtResource("1_2god3")
 
 [node name="Grid" parent="." instance=ExtResource("1_i5qmb")]
-position = Vector2(153, 73)
+position = Vector2(143, 7)
+
+[node name="UI" parent="." instance=ExtResource("2_m27sc")]

@@ -1,3 +1,39 @@
-[gd_scene format=3 uid="uid://dgpv1g6tdho7a"]
+[gd_scene load_steps=3 format=3 uid="uid://dgpv1g6tdho7a"]
 
-[node name="UI" type="Node2D"]
+[ext_resource type="Script" path="res://Assets/UI/FishMeter.gd" id="1_pgcr3"]
+[ext_resource type="Script" path="res://Assets/UI/HungerMeter.gd" id="1_txmud"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 800.0
+
+[node name="Layout" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 800.0
+
+[node name="PanelContainer" type="CenterContainer" parent="Layout"]
+custom_minimum_size = Vector2(2.08165e-12, 800)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="List" type="VBoxContainer" parent="Layout"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+alignment = 2
+
+[node name="HungerMeter" type="RichTextLabel" parent="Layout/List"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Hunger:"
+fit_content = true
+script = ExtResource("1_txmud")
+
+[node name="FishMeter" type="RichTextLabel" parent="Layout/List"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Fish:"
+script = ExtResource("1_pgcr3")

@@ -21,3 +21,4 @@ animations = [{
 [node name="FishingShip" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_sg3em")
 script = ExtResource("1_p5f83")
+health = 3
