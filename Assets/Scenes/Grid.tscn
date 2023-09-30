@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdgsptuj5gtfj"]
+[gd_scene load_steps=3 format=3 uid="uid://bdgsptuj5gtfj"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Grid.gd" id="1_fpvmf"]
+[ext_resource type="Texture2D" uid="uid://dw554m8nrm3gc" path="res://Assets/Images/square.png" id="2_ac22v"]
 
 [node name="Grid" type="Node2D"]
 script = ExtResource("1_fpvmf")
@@ -16,3 +17,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="GridControl/Container"]
+layout_mode = 2
+texture = ExtResource("2_ac22v")
