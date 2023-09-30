@@ -60,12 +60,10 @@ func advance() -> void:
 		advance_row(row)
 
 func advance_row(row_i: int) -> void:
-	var row = items[row_i] as Array[Item]
+	var row = items[row_i]
 	for i in range(row.size() - 2, -1, -1):
 		var item = row[i]
-		var left = row[i - 1] if i > 0 else null
-		var right = row[i + 1] if i < row.size() - 1 else null
-		if item != null and item.can_move(left, right):
+		if item != null and item.can_move(i, row as Array[Item]):
 			item.position.x += cell_size
 			row[i + 1] = item
 			row[i] = null

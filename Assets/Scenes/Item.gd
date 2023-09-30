@@ -23,5 +23,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func can_move(left: Item, right: Item) -> bool:
+func can_move(i: int, row: Array) -> bool:
+	var right: Item = row[i + 1] if i < row.size() - 1 else null
 	return state != State.Immobile and (right == null or right.state != State.Immobile)
