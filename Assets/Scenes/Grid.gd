@@ -13,9 +13,9 @@ extends Node2D
 
 var createCooldownMAX = 2
 var createCooldown = 2
-var oceanCurrentDirection = Vector2.ZERO
+var oceanCurrentDirection := Vector2i.ZERO
 
-var items := GridItems.new()
+@onready var items := GridItems.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,14 +50,17 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_5:
 			place_item(4)
 		if event.keycode == KEY_UP:
-			print("Left!")
-			oceanCurrentDirection = Vector2.UP
+			oceanCurrentDirection = Vector2i.UP
+			advance()
 		if event.keycode == KEY_RIGHT:
-			oceanCurrentDirection = Vector2.RIGHT
+			oceanCurrentDirection = Vector2i.RIGHT
+			advance()
 		if event.keycode == KEY_DOWN:
-			oceanCurrentDirection = Vector2.DOWN
+			oceanCurrentDirection = Vector2i.DOWN
+			advance()
 		if event.keycode == KEY_LEFT:
-			oceanCurrentDirection = Vector2.LEFT
+			oceanCurrentDirection = Vector2i.LEFT
+			advance()
 		
 
 func place_item(row: int) -> Item:
@@ -89,50 +92,49 @@ func place_typed_item_grid(row: int, column: int, item: Item) -> Item:
 func _on_item_destroyed(item: Item):
 	pass
 
-func advance() -> void:	
-	for row in range(0, rows):
-		advance_row(row)
-	
-	for row in range(0, rows):
-		collect_row(row)
-	
-	for row in range(0, rows):
-		produce_row(row)
+func advance() -> void:
+	print("advance")
+	for col in items.columns:
+		for item in items.column(col):
+			if item is Fish:
+				print("Fish")
+				move_item(item, Vector2i.LEFT)
+
+	for row in items.rows:
+		for item in items.row(row):
+			if item is PirateShip:
+				print("PirateShip")
+				move_item(item, Vector2i.DOWN)
+
+	for item in items.items:
+		if item:
+			print("item", item)
+		if item is FishingShip:
+			print("Moving fishing ship to", oceanCurrentDirection)
+			move_item(item, oceanCurrentDirection)
 		
-	for row in range(0, rows):
-		cleanup_row(row)
+
+#	for row in range(0, rows):
+#		collect_row(row)
+#
+#	for row in range(0, rows):
+#		produce_row(row)
+#
+#	for row in range(0, rows):
+#		cleanup_row(row)
 		
 	create_items()
-	apply_ocean_current()
 
-func advance_row(row_i: int) -> void:
-	var row = items[row_i]
-	for i in range(row.size() - 2, -1, -1):
-		var item = row[i]
-		if item != null and item.can_move(i, row as Array[Item]):
-			item.position.x += cell_size
-			row[i + 1] = item
-			row[i] = null
-
-func produce_row(row_i: int) -> void:
-	var row: Array = items[row_i]
-	var lastItem = row[row.size()-2]
-	if lastItem:
-		lastItem.on_produce()
 	
-func collect_row(row_i: int) -> void:
-	var row: Array = items[row_i]
-	var lastItem = row.back()
-	if lastItem:
-		lastItem.on_collect()
-	
-func cleanup_row(row_i: int) -> void:
-	var row: Array = items[row_i]
-	for i in range(row.size() - 1, -1, -1):
-		var item = row[i]
-		if item && item.health <= 0:
-			row[i] = null
-			item.queue_free()
+func move_item(item: Item, direction: Vector2i) -> void:
+	var to := item.grid_loc + direction
+	if items.contains(to):
+		var other = items.get_at(to.x, to.y)
+		if item.can_move(other, items):
+			item.position += Vector2(direction * cell_size)
+			if other != null:
+				item.on_collide(other)
+			items.swap(item.grid_loc, to)
 
 func create_items() -> void:
 	createCooldown -= 1
@@ -162,8 +164,4 @@ func create_items() -> void:
 				new_item = pirate_scene.instantiate()
 			
 			place_typed_item_grid(randomRows[i], 0, new_item)
-						
-func apply_ocean_current() -> void: 
-	for row in items.size():
-		for col in row.size():
-			item.can_move(row, col, oceanCurrentDirection, items)
+				

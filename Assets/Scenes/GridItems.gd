@@ -2,28 +2,38 @@ extends Object
 
 class_name GridItems
 
-var _items: Array[Item] = []
+var items: Array[Item] = []
 
-var width := 0
+var columns := 0
+var rows := 0
 
 func _to_index(x: int, y: int) -> int:
-	return y * width * x
+	return y * columns * x
 
-func init(width: int, height: int) -> void:
-	_items.resize(width * height)
-	_items.fill(null)
-	self.width = width
+func init(columns: int, rows: int) -> void:
+	items.resize(columns * rows)
+	items.fill(null)
+	self.columns = columns
+	self.rows = rows
+
+func contains(pos: Vector2i) -> bool:
+	return (pos.x >= 0 or pos.x < columns) and (pos.y >= 0 or pos.y < rows)
 
 func get_at(x: int, y: int) -> Item:
-	return _items[_to_index(x, y)]
+	var i = _to_index(x, y)
+	if i < 0 or i >= items.size():
+		return null
+	return items[i]
 
 func get_idx(i) -> Item:
-	return _items[i]
+	return items[i]
 
 func set_at(x: int, y: int, item: Item) -> Item:
 	var i = _to_index(x, y)
-	var previous = _items[i]
-	_items[i] = item
+	var previous = items[i]
+	items[i] = item
+	if item:
+		item.grid_loc = Vector2i(x, y)
 	return previous
 
 func swap(from: Vector2i, to: Vector2i):
@@ -33,8 +43,14 @@ func swap(from: Vector2i, to: Vector2i):
 
 func row(row_index: int) -> Array[Item]:
 	var start = _to_index(0, row_index)
-	return range(start, start + width).map(get_idx)
+	var result: Array[Item] = []
+	for i in range(start, start + columns):
+		result.push_back(get_idx(i))
+	return result
 
 func column(column_index: int) -> Array[Item]:
 	var start = _to_index(column_index, 0)
-	return range(start, _items.size(), width).map(get_idx)
+	var result: Array[Item] = []
+	for i in range(start, items.size(), columns):
+		result.push_back(get_idx(i))
+	return result

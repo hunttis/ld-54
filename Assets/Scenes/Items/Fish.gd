@@ -1,5 +1,6 @@
 extends "res://Assets/Scenes/Item.gd"
 
+class_name Fish
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

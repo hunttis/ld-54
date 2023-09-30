@@ -9,5 +9,8 @@ script = ExtResource("1_2god3")
 
 [node name="Grid" parent="." instance=ExtResource("1_i5qmb")]
 position = Vector2(143, 7)
+rows = 6
+columns = 6
+cell_size = 128
 
 [node name="UI" parent="." instance=ExtResource("2_m27sc")]
