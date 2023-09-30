@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf82stybw5r5g"]
+
+[ext_resource type="PackedScene" uid="uid://bdgsptuj5gtfj" path="res://Assets/Scenes/Grid.tscn" id="1_i5qmb"]
+
+[node name="PlayMode" type="Node2D"]
+
+[node name="Grid" parent="." instance=ExtResource("1_i5qmb")]
+position = Vector2(153, 73)
