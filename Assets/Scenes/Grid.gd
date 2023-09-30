@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var item_scene = preload("res://Assets/Scenes/Item.tscn")
 @onready var fishing_ship_scene = preload("res://Assets/Scenes/Items/FishingShip.tscn")
+@onready var fish_scene = preload("res://Assets/Scenes/Items/Fish.tscn")
+@onready var pirate_scene = preload("res://Assets/Scenes/Items/PirateShip.tscn")
 @onready var items_node = $Items
 
 @export var rows = 5
@@ -25,6 +27,12 @@ func _ready() -> void:
 	
 	var fishing_ship = fishing_ship_scene.instantiate()
 	place_typed_item_grid(1, 0, fishing_ship)
+	
+	var fish = fish_scene.instantiate()
+	place_typed_item_grid(2, 0, fish)
+	
+	var pirate_ship = pirate_scene.instantiate()
+	place_typed_item_grid(3, 0, pirate_ship)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
