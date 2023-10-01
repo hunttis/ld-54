@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dgpv1g6tdho7a" path="res://Assets/UI/UI.tscn" id="2_m27sc"]
 [ext_resource type="PackedScene" path="res://Background.tscn" id="4_bfok7"]
 [ext_resource type="Script" path="res://Assets/Scenes/Tutorial.gd" id="5_lhcyx"]
+[ext_resource type="AudioStream" uid="uid://cqp678fos3vtv" path="res://Assets/Audio/LD.mp3" id="5_k5gpi"]
 
 [node name="PlayMode" type="Node2D"]
 script = ExtResource("1_2god3")
@@ -128,3 +129,6 @@ text = "Protect your village at the
 bottom and fish for fish"
 horizontal_alignment = 1
 vertical_alignment = 1
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_k5gpi")
+volume_db = -80.0

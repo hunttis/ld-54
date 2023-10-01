@@ -1,4 +1,4 @@
-extends "res://Assets/Scenes/Floating.gd"
+extends "res://Assets/Scenes/Item.gd"
 
 class_name Fish
 
