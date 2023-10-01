@@ -33,7 +33,6 @@ func collect_fish(amount: int):
 	fish += amount
 
 func collect_points(amount: int):
-	print("points to add ", amount)
 	score += amount
 
 func village_attacked(amount: int):
