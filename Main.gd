@@ -29,7 +29,8 @@ func _ready():
 func change_screen(target_screen: Global.Screens):
 
 	if current_screen.get_child(0):
-		current_screen.remove_child(current_screen.get_child(0))
+		current_screen.get_child(0).queue_free()
+#		current_screen.remove_child(current_screen.get_child(0))
 
 	if target_screen == Global.Screens.MAIN_MENU:
 		mainmenu_screen = mainmenu_scene.instantiate()

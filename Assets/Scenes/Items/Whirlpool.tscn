@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3sdqopljpkn8"]
+[gd_scene load_steps=5 format=3 uid="uid://c30r3bnyt1fam"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Items/Whirlpool.gd" id="1_jmlta"]
 [ext_resource type="Texture2D" uid="uid://y2l23acqwmby" path="res://Assets/Images/tentacle.png" id="2_nribr"]
