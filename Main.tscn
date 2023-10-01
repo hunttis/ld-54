@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=12 format=3 uid="uid://iglduxfsjxr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
 [ext_resource type="Script" path="res://Assets/Global/SoundEngine.gd" id="2_7lwyg"]
 [ext_resource type="AudioStream" uid="uid://cqp678fos3vtv" path="res://Assets/Audio/LD.mp3" id="3_k3wlk"]
+[ext_resource type="AudioStream" uid="uid://bwnc7fy5ed0cs" path="res://Assets/Audio/got-fish/got-fish-01.wav" id="6_31jh7"]
+[ext_resource type="AudioStream" uid="uid://217f8f7vxtge" path="res://Assets/Audio/got-fish/got-fish-02.wav" id="4_x7yw4"]
+[ext_resource type="AudioStream" uid="uid://drw8mw3r16q0j" path="res://Assets/Audio/got-fish/got-fish-03.wav" id="7_deepu"]
+[ext_resource type="AudioStream" uid="uid://ewpw5rjfji43" path="res://Assets/Audio/got-fish/got-fish-04.wav" id="8_6cuou"]
+[ext_resource type="AudioStream" uid="uid://b42qwj1woixhs" path="res://Assets/Audio/got-fish/got-fish-05.wav" id="9_5a42t"]
+[ext_resource type="AudioStream" uid="uid://hsubjjrg8yoo" path="res://Assets/Audio/got-fish/got-fish-06.wav" id="10_0qeyv"]
+[ext_resource type="AudioStream" uid="uid://b124e0tkw7cnv" path="res://Assets/Audio/got-fish/got-fish-07.wav" id="3_aclcl"]
+[ext_resource type="AudioStream" uid="uid://wwso700yd2h1" path="res://Assets/Audio/got-fish/got-fish-08.wav" id="11_qab8e"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5wul1")
@@ -15,3 +23,27 @@ script = ExtResource("2_7lwyg")
 
 [node name="Music" type="AudioStreamPlayer" parent="SoundEngine"]
 stream = ExtResource("3_k3wlk")
+
+[node name="GotFish01" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("6_31jh7")
+
+[node name="GotFish02" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("4_x7yw4")
+
+[node name="GotFish03" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("7_deepu")
+
+[node name="GotFish04" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("8_6cuou")
+
+[node name="GotFish05" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("9_5a42t")
+
+[node name="GotFish06" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("10_0qeyv")
+
+[node name="GotFish07" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("3_aclcl")
+
+[node name="GotFish08" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("11_qab8e")
