@@ -2,7 +2,7 @@ extends "res://Assets/Scenes/Item.gd"
 
 class_name Fish
 
-func finished_moving():
+func exited_grid():
 	destroy()
 
 func on_collide(other: Item):

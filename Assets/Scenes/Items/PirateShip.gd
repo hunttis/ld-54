@@ -3,7 +3,7 @@ extends "res://Assets/Scenes/Item.gd"
 class_name PirateShip
 
 
-func finished_moving():
+func exited_grid():
 	Global.village_attacked(1)
 	destroy()
 

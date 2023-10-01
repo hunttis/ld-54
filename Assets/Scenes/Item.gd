@@ -45,5 +45,5 @@ func on_collide(other: Item):
 func destroy():
 	destroyed.emit(self)
 
-func finished_moving():
+func exited_grid():
 	pass

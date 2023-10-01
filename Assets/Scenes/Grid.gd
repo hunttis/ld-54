@@ -29,6 +29,7 @@ var createRockCooldown = 2
 var grid_gap: int = 0
 
 var moving_items: Array[Item] = []
+var advancing = false
 
 @onready var items := GridItems.new()
 
@@ -50,8 +51,26 @@ func _ready() -> void:
 	for i in range(0, Global.columns * Global.rows):
 		var cell = grid_cell_scene.instantiate()
 		gridContainer.add_child(cell)
+		
+func _process(delta: float) -> void:
+	if not advancing:
+		return
+		
+	if moving_items.is_empty():
+		advance_done.emit()
+		return
+
+	for item in moving_items:
+		if not is_instance_valid(item):
+			continue
+		if not item.position.is_equal_approx(item.target):
+			return
+	moving_items.clear()
+	advancing = false
+	advance_done.emit()
 
 func start_advance(item_type: Variant, direction: Vector2i):
+	advancing = true
 	move_typed_items_to_direction(item_type, direction)
 
 func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
@@ -67,7 +86,6 @@ func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	items_node.add_child(item, true)
 	items.set_at(column, row, item)
 	item.destroyed.connect(_on_item_destroyed)
-	item.move_complete.connect(_on_move_complete)
 	return item
 
 func _on_item_destroyed(item: Item):
@@ -112,8 +130,8 @@ func move_item(item: Item, direction: Vector2i) -> void:
 			item.move_to(to * Global.cell_size + Vector2i(Global.cell_size / 2, Global.cell_size / 2))
 			moving_items.push_back(item)
 	else:
-		print(item.name, " Finished moving!")
-		item.finished_moving()
+		print(item.name, " exited grid!")
+		item.exited_grid()
 
 func create_items() -> void:
 	createFishCooldown -= 1
@@ -152,13 +170,7 @@ func create_items() -> void:
 			var new_item = rock_scene.instantiate()
 			place_typed_item_grid(points[0].x, points[0].y, new_item)
 
-func _on_move_complete(item: Item):
-	_remove_moving(item)
-
 func _remove_moving(item: Item):
 	if moving_items.is_empty():
 		return
 	moving_items.erase(item)
-	if moving_items.is_empty():
-		advance_done.emit()
-	

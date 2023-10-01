@@ -9,7 +9,6 @@ enum Turn {
 }
 
 var turn := Turn.Player
-var advancing = false
 
 func _ready() -> void:
 	grid.advance_done.connect(_on_turn_done)
@@ -18,7 +17,8 @@ func _process(delta):
 	pass
 
 func _input(event: InputEvent) -> void:
-	if not advancing and turn == Turn.Player:
+	# print("Input. Advancing: ", advancing, ", turn: ", Turn.find_key(turn))
+	if not grid.advancing and turn == Turn.Player:
 		if event.is_action_pressed("ui_up"):
 			_play_player_turn(Vector2i.UP)
 		elif event.is_action_pressed("ui_right"):
@@ -32,11 +32,10 @@ func _play_player_turn(direction: Vector2i):
 	_run_turn(FishingShip, direction)
 
 func _run_turn(item_type: Variant, direction: Vector2):
-	advancing = true
 	grid.start_advance(item_type, direction)
 
 func _on_turn_done():
-	advancing = false
+	print("TURN DONE ", Turn.find_key(turn))
 	if turn == Turn.Player:
 		turn = Turn.Fish
 		_run_turn(Fish, Vector2i.LEFT)
@@ -46,4 +45,3 @@ func _on_turn_done():
 	elif turn == Turn.Enemy:
 		turn = Turn.Player
 		grid.create_items()
-
