@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://cj8p7thm7bx3n"]
 
-[ext_resource type="Texture2D" uid="uid://dw554m8nrm3gc" path="res://Assets/Images/square.png" id="1_ba5mm"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cj8ah"]
+load_path = "res://.godot/imported/square.png-2c5891b90d618b3bc51755a40bcd62dd.ctex"
 
 [node name="GridCell" type="TextureRect"]
-texture = ExtResource("1_ba5mm")
+texture = SubResource("CompressedTexture2D_cj8ah")
