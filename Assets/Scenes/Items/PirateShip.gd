@@ -8,7 +8,11 @@ func _ready():
 func finished_moving():
 	Global.village_attacked(1)
 	destroy()
-	
+
+func on_collide(other: Item):
+	if is_instance_of(other, FishingShip):
+		other.destroy()
+
 #func can_move(i: int, row: Array) -> bool:
 #	if i == row.size() - 2:
 #		state = State.Immobile

@@ -9,8 +9,15 @@ extends Node2D
 @onready var grid_cell_scene = preload("res://Assets/Scenes/grid_cell.tscn")
 @onready var gridContainer = $GridControl/Container
 
-var createCooldownMAX = 2
-var createCooldown = 2
+var createFishCooldownMAX = 2
+var createFishCooldown = 2
+
+var createFishingShipCooldownMAX = 2
+var createFishingShipCooldown = 2
+
+var createPirateCooldownMAX = 2
+var createPirateCooldown = 2
+
 var oceanCurrentDirection := Vector2i.ZERO
 var grid_gap: int = 0
 
@@ -100,7 +107,6 @@ func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	return item
 
 func _on_item_destroyed(item: Item):
-	print(item, " wants to be destroyed")
 	items.delete(item)
 	item.queue_free()
 
@@ -110,8 +116,8 @@ func advance() -> void:
 	move_typed_items_to_direction(Fish, Vector2i.LEFT)
 	move_typed_items_to_direction(PirateShip, Vector2i.DOWN)
 	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
-#	create_items()
-	
+	create_items()
+
 	
 
 func move_typed_items_to_direction(itemType: Variant, direction: Vector2i) -> void:
@@ -138,7 +144,7 @@ func move_typed_items_to_direction(itemType: Variant, direction: Vector2i) -> vo
 	
 func move_item(item: Item, direction: Vector2i) -> void:
 	var to := item.grid_loc + direction
-	if items.contains(to):
+	if item && items.contains(to):
 		var other = items.get_at(to.x, to.y)
 		if item.can_move(other, items):
 			item.position += Vector2(direction * Global.cell_size)
@@ -151,35 +157,29 @@ func move_item(item: Item, direction: Vector2i) -> void:
 		item.finished_moving()
 
 func create_items() -> void:
-	createCooldown -= 1
-	if createCooldown <= 0:
-		createCooldown = createCooldownMAX
-		var allRows = [0, 1, 2, 3, 4, 5]
-		var randomRows = []
-		var firstIndex = randi_range(0, allRows.size()-1)
-		randomRows.push_back(allRows[firstIndex])
-		allRows.remove_at(firstIndex)
-		var secondIndex = randi_range(0, allRows.size()-1)
-		randomRows.push_back(allRows[secondIndex])
-		allRows.remove_at(secondIndex)
-		var thirdIndex = randi_range(0, allRows.size()-1)
-		randomRows.push_back(allRows[thirdIndex])
-		allRows.remove_at(thirdIndex)
-		print("Random rows: ", randomRows)
-		
-		for i in range(0, randomRows.size()):
-			var new_item
-			
-			if i == 0:
-				new_item = fishing_ship_scene.instantiate()
-			elif i == 1:
-				new_item = fish_scene.instantiate()
-			elif i == 2:
-				new_item = pirate_scene.instantiate()
-			
-#			place_typed_item_grid(randomRows[i], 0, new_item)
-				
-
-func create_pirate_ship(column: int) -> void:
-	var pirate_ship = pirate_scene.instantiate()
+	createFishCooldown -= 1
+	createFishingShipCooldown -= 1
+	createPirateCooldown -= 1
 	
+	if createFishCooldown <= 0:
+		createFishCooldown = createFishCooldownMAX
+		var fish_row = randi_range(0, Global.rows - 1)
+		
+		var new_item = fish_scene.instantiate()
+		place_typed_item_grid(Global.columns - 1, fish_row, new_item)
+	
+	if createPirateCooldown <= 0:
+		createPirateCooldown = createPirateCooldownMAX
+		var pirate_column = randi_range(0, Global.columns - 1)
+		
+		var new_item = pirate_scene.instantiate()
+		place_typed_item_grid(pirate_column, 0, new_item)
+		
+	if createFishingShipCooldown <= 0:
+		var fishing_row = randi_range(0, Global.rows - 1)
+		
+		var new_item = fishing_ship_scene.instantiate()
+		place_typed_item_grid(0, fishing_row, new_item)
+	
+	
+		
