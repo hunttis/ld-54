@@ -66,9 +66,10 @@ func column(column_index: int) -> Array[Item]:
 	return result
 
 func delete(item: Item) -> void:
-	var index_of_item = items.find(item)
-	if index_of_item > 0:
-		items[index_of_item] = null
+	var idx = items.find(item)
+	while idx >= 0:
+		items[idx] = null
+		idx = items.find(item)
 
 func random_empty_point_on_column(column_number: int) -> int:
 	var possible_points = []

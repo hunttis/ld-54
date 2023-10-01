@@ -14,7 +14,7 @@ var score: int = 0
 var POINTS__FISH_COLLECTION = 10
 var POINTS__PIRATE_SHIP_DESTROY = 30
 var POINTS__FISHING_SHIP_DESTROY = -10
-var POINTS__FISHING_SHIP_COLLISION_WITH_A_ROCK = -10
+var POINTS__FISHING_SHIP_COLLISION_WITH_A_WHIRLPOOL = -10
 
 var game_in_progress = true
 
@@ -33,7 +33,6 @@ func collect_fish(amount: int):
 	fish += amount
 
 func collect_points(amount: int):
-	print("points to add ", amount)
 	score += amount
 
 func village_attacked(amount: int):

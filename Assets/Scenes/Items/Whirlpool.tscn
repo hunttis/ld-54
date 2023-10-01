@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c30r3bnyt1fam"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Items/Whirlpool.gd" id="1_jmlta"]
+[ext_resource type="Texture2D" uid="uid://y2l23acqwmby" path="res://Assets/Images/tentacle.png" id="2_nribr"]
+[ext_resource type="Texture2D" uid="uid://dj1pk7wanq52q" path="res://Assets/Images/whirlpool.png" id="3_rvvkq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ytwyj"]
+
+[node name="Rock" type="AnimatedSprite2D"]
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_ytwyj")
+script = ExtResource("1_jmlta")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_nribr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 116.667)
+texture = ExtResource("3_rvvkq")
