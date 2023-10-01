@@ -8,13 +8,14 @@ var columns := 0
 var rows := 0
 
 func _to_index(x: int, y: int) -> int:
-	return y * columns * x
+	return y * columns + x
 
 func init(columns: int, rows: int) -> void:
 	items.resize(columns * rows)
 	items.fill(null)
-	self.columns = columns
-	self.rows = rows
+	print("Grid array size: ", items.size())
+	self.columns = Global.columns
+	self.rows = Global.rows
 
 func contains(pos: Vector2i) -> bool:
 	return (pos.x >= 0 or pos.x < columns) and (pos.y >= 0 or pos.y < rows)
@@ -38,8 +39,9 @@ func set_at(x: int, y: int, item: Item) -> Item:
 
 func swap(from: Vector2i, to: Vector2i):
 	var tmp = get_at(to.x, to.y)
-	set_at(to.x, to.y, get_at(from.x, from.y))
-	set_at(from.x, from.y, tmp)
+	if contains(from) && contains(to):
+		set_at(to.x, to.y, get_at(from.x, from.y))
+		set_at(from.x, from.y, tmp)
 
 func row(row_index: int) -> Array[Item]:
 	var start = _to_index(0, row_index)

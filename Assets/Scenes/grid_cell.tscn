@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj8p7thm7bx3n"]
+
+[ext_resource type="Texture2D" uid="uid://dw554m8nrm3gc" path="res://Assets/Images/square.png" id="1_ba5mm"]
+
+[node name="GridCell" type="TextureRect"]
+texture = ExtResource("1_ba5mm")
