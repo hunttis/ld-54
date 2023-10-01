@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqi18me5tp00e"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Menus/GameOver.gd" id="1_l4o04"]
-[ext_resource type="PackedScene" path="res://Background.tscn" id="2_h3qex"]
+[ext_resource type="PackedScene" uid="uid://b6ofqxhwlg1l5" path="res://Background.tscn" id="2_h3qex"]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_l4o04")
@@ -38,11 +38,73 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 64
 text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameOverReason" type="Label" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "You lost because of: "
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control7" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PointLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "You got X points!"
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control6" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FishLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "You also caught X fish!"
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control5" type="Control" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
