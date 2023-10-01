@@ -41,7 +41,7 @@ func _ready() -> void:
 	var pirate_ship = pirate_scene.instantiate()
 	place_typed_item_grid(4, 1, pirate_ship)
 
-	var rock = rock_scene.instantiate()
+#	var rock = rock_scene.instantiate()
 #	place_typed_item_grid(5, 4, rock)
 	
 	gridContainer.columns = Global.columns
@@ -79,7 +79,7 @@ func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	item.position.x = item_x
 	item.position.y = item_y
 	item.grid_loc = Vector2i(column, row)
-	items_node.add_child(item)
+	items_node.add_child(item, true)
 	items.set_at(column, row, item)
 	item.destroyed.connect(_on_item_destroyed)
 	return item
@@ -94,7 +94,7 @@ func advance() -> void:
 	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
 	move_typed_items_to_direction(Fish, Vector2i.LEFT)
 	move_typed_items_to_direction(PirateShip, Vector2i.DOWN)
-	move_typed_items_to_direction(Rock, Vector2i.LEFT)
+#	move_typed_items_to_direction(Rock, Vector2i.LEFT)
 	create_items()
 
 	
@@ -126,9 +126,8 @@ func move_item(item: Item, direction: Vector2i) -> void:
 	if item && items.contains(to):
 		var other = items.get_at(to.x, to.y)
 		if item.can_move(other, items):
-#			item.position += Vector2(direction * Global.cell_size)
 			if other != null:
-				print("item: ", item, " is colliding with.", other)
+				print("item: ", item.name, " is colliding with.", other.name)
 				item.on_collide(other)
 			items.swap(item.grid_loc, to)
 	else:

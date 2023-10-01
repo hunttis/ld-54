@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6oi3a07xq2s7"]
+[gd_scene load_steps=5 format=3 uid="uid://d3sdqopljpkn8"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/Item.gd" id="1_5ilxv"]
 [ext_resource type="Texture2D" uid="uid://cm0xuy2v7qkb0" path="res://Assets/Images/star.png" id="1_cmjro"]
+[ext_resource type="Script" path="res://Assets/Scenes/Items/Rock.gd" id="2_slbg6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vm1af"]
 atlas = ExtResource("1_cmjro")
@@ -20,4 +20,4 @@ animations = [{
 
 [node name="Rock" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_ytwyj")
-script = ExtResource("1_5ilxv")
+script = ExtResource("2_slbg6")

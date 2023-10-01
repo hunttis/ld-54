@@ -16,6 +16,6 @@ func on_collide(other: Item):
 		self.destroy()
 
 func can_move(other: Item, items: GridItems) -> bool:
-	if is_instance_of(other, Fish) || is_instance_of(other, PirateShip) || other == null:
-		return true
-	return false
+#	if is_instance_of(other, Fish) || is_instance_of(other, PirateShip) || other == null:
+	return true
+#	return false

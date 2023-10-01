@@ -6,3 +6,5 @@ class_name Rock
 func _ready():
 	self.modulate = Color.DARK_GRAY
 
+func can_move(other: Item, items: GridItems) -> bool:
+	return false
