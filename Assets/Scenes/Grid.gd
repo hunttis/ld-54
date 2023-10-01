@@ -62,35 +62,6 @@ func _input(event: InputEvent) -> void:
 		oceanCurrentDirection = Vector2i.LEFT
 		advance()
 
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_1:
-			place_item(0)
-		if event.keycode == KEY_2:
-			place_item(1)
-		if event.keycode == KEY_3:
-			place_item(2)
-		if event.keycode == KEY_4:
-			place_item(3)
-		if event.keycode == KEY_5:
-			place_item(4)
-
-func place_item(row: int) -> Item:
-	return place_item_grid(row, 0)
-	
-func place_item_grid(row: int, column: int, state = Item.State.Movable) -> Item:
-	var gap_offset_x = grid_gap * column
-	var gap_offset_y = grid_gap * row
-	var item_x = Global.cell_size * column + Global.cell_size / 2 + gap_offset_x
-	var item_y = Global.cell_size * row + Global.cell_size / 2 + gap_offset_y
-	# TODO: grid gap size
-	var item = item_scene.instantiate() as Item
-	item.position.x = item_x
-	item.position.y = item_y
-	item.state = state
-	items_node.add_child(item)
-	items.set_at(row, column, item)
-	return item
-
 func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	var gap_offset_x = clamp(grid_gap * (column - 1), 0, grid_gap * Global.columns)
 	print("GAP: ", gap_offset_x)
@@ -147,7 +118,7 @@ func move_item(item: Item, direction: Vector2i) -> void:
 	if item && items.contains(to):
 		var other = items.get_at(to.x, to.y)
 		if item.can_move(other, items):
-			item.position += Vector2(direction * Global.cell_size)
+#			item.position += Vector2(direction * Global.cell_size)
 			if other != null:
 				print("item: ", item, " is colliding with.", other)
 				item.on_collide(other)
@@ -163,23 +134,27 @@ func create_items() -> void:
 	
 	if createFishCooldown <= 0:
 		createFishCooldown = createFishCooldownMAX
-		var fish_row = randi_range(0, Global.rows - 1)
+		var fish_row = items.random_empty_point_on_column(Global.columns - 1)
+		if fish_row >= 0:
+			var new_item = fish_scene.instantiate()
+			place_typed_item_grid(Global.columns - 1, fish_row, new_item)
 		
-		var new_item = fish_scene.instantiate()
-		place_typed_item_grid(Global.columns - 1, fish_row, new_item)
 	
 	if createPirateCooldown <= 0:
 		createPirateCooldown = createPirateCooldownMAX
-		var pirate_column = randi_range(0, Global.columns - 1)
+		var pirate_column = items.random_empty_point_on_row(0)
 		
-		var new_item = pirate_scene.instantiate()
-		place_typed_item_grid(pirate_column, 0, new_item)
+		if pirate_column >= 0:
+			var new_item = pirate_scene.instantiate()
+			place_typed_item_grid(pirate_column, 0, new_item)
 		
 	if createFishingShipCooldown <= 0:
-		var fishing_row = randi_range(0, Global.rows - 1)
+		createFishingShipCooldown = createFishingShipCooldownMAX
+		var fishing_row = items.random_empty_point_on_column(0)
 		
-		var new_item = fishing_ship_scene.instantiate()
-		place_typed_item_grid(0, fishing_row, new_item)
+		if fishing_row >= 0:
+			var new_item = fishing_ship_scene.instantiate()
+			place_typed_item_grid(0, fishing_row, new_item)
 	
 	
 		

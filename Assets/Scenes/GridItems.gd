@@ -70,6 +70,31 @@ func delete(item: Item) -> void:
 	if index_of_item > 0:
 		items[index_of_item] = null
 
+func random_empty_point_on_column(column_number: int) -> int:
+	var possible_points = []
+	
+	for row in rows:
+		if !get_at(column_number, row):
+			possible_points.push_back(row)
+	
+	if possible_points.size() > 0:
+		return possible_points.pick_random()
+	else:
+		return -1
+		
+func random_empty_point_on_row(row_number: int) -> int:
+	var possible_points = []
+	
+	for column in columns:
+		if !get_at(column, row_number):
+			possible_points.push_back(column)
+	
+	if possible_points.size() > 0:
+		return possible_points.pick_random()
+	else:
+		return -1
+	
+
 func random_empty_points(max_count: int) -> Array[Vector2i]:
 	var points = _points.duplicate()
 	points.shuffle()
