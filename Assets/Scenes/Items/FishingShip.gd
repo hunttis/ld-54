@@ -1,9 +1,6 @@
-extends "res://Assets/Scenes/Item.gd"
+extends "res://Assets/Scenes/Floating.gd"
 
 class_name FishingShip
-
-func _ready():
-	self.modulate = Color.AQUA
 
 func on_collide(other: Item):
 	if is_instance_of(other, Fish):
