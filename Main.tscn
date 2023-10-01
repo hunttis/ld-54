@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=16 format=3 uid="uid://iglduxfsjxr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
 [ext_resource type="Script" path="res://Assets/Global/SoundEngine.gd" id="2_7lwyg"]
@@ -10,7 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://ewpw5rjfji43" path="res://Assets/Audio/got-fish/got-fish-04.wav" id="8_6cuou"]
 [ext_resource type="AudioStream" uid="uid://b42qwj1woixhs" path="res://Assets/Audio/got-fish/got-fish-05.wav" id="9_5a42t"]
 [ext_resource type="AudioStream" uid="uid://hsubjjrg8yoo" path="res://Assets/Audio/got-fish/got-fish-06.wav" id="10_0qeyv"]
+[ext_resource type="AudioStream" uid="uid://dcu1xn0lb1a8g" path="res://Assets/Audio/splash/splash-01.wav" id="11_6tfph"]
 [ext_resource type="AudioStream" uid="uid://wwso700yd2h1" path="res://Assets/Audio/got-fish/got-fish-08.wav" id="11_qab8e"]
+[ext_resource type="AudioStream" uid="uid://3wdtoly5rrtq" path="res://Assets/Audio/splash/splash-02.wav" id="12_7dpr8"]
+[ext_resource type="AudioStream" uid="uid://dldxlq4am6bi6" path="res://Assets/Audio/splash/splash-03.wav" id="13_seppq"]
+[ext_resource type="AudioStream" uid="uid://c1s1s7w6ngav0" path="res://Assets/Audio/splash/splash-04.wav" id="14_cla3n"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5wul1")
@@ -47,3 +51,15 @@ stream = ExtResource("3_aclcl")
 
 [node name="GotFish08" type="AudioStreamPlayer" parent="SoundEngine"]
 stream = ExtResource("11_qab8e")
+
+[node name="Splash01" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("11_6tfph")
+
+[node name="Splash02" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("12_7dpr8")
+
+[node name="Splash03" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("13_seppq")
+
+[node name="Splash04" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("14_cla3n")

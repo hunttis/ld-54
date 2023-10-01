@@ -15,7 +15,7 @@ var playmode_screen
 
 func _ready():
 	change_screen(default_screen)
-	#%SoundEngine.play_music()
+	%SoundEngine.play_music()
 
 #func _input(event: InputEvent) -> void:
 #	if event.is_action_pressed("ui_up"):

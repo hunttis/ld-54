@@ -32,8 +32,8 @@ func _input(event: InputEvent) -> void:
 			_play_player_turn(Vector2i.ZERO)
 
 func _play_player_turn(direction: Vector2i):
-	#soundEngine.play_got_fish()
 	_run_turn(FishingShip, direction)
+	soundEngine.play_splash()
 
 func _run_turn(item_type: Variant, direction: Vector2):
 	grid.start_advance(item_type, direction)
