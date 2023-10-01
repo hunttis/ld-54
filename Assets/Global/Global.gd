@@ -6,6 +6,7 @@ var cell_size = 128
 
 var fish: int = 0
 var hunger: int = 0
+var village_health: int = 5
 
 
 func _ready():
@@ -13,3 +14,6 @@ func _ready():
 
 func collect_fish(amount: int):
 	fish += amount
+
+func village_attacked(amount: int):
+	village_health -= amount

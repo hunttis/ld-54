@@ -2,11 +2,14 @@ extends "res://Assets/Scenes/Item.gd"
 
 class_name Fish
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	self.modulate = Color.DARK_BLUE
 
-func on_collect():
-	print("Fish was collected")
-	Global.collect_fish(1)
-	health = 0
+func finished_moving():
+	destroy()
+
+func on_collide(other: Item):
+	if is_instance_of(other, FishingShip):
+		Global.collect_fish(2)
+		self.destroy()
+

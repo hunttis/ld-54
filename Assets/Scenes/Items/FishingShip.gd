@@ -18,3 +18,13 @@ func _ready():
 func on_produce():
 	print("Fishing ship producing fish!")
 	Global.collect_fish(2)
+
+func on_collide(other: Item):
+	if is_instance_of(other, Fish):
+		Global.collect_fish(2)
+		other.destroy()
+
+func can_move(other: Item, items: GridItems) -> bool:
+	if is_instance_of(other, Fish) || other == null:
+		return true
+	return false

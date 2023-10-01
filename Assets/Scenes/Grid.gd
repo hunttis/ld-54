@@ -30,6 +30,7 @@ func _ready() -> void:
 	var pirate_ship = pirate_scene.instantiate()
 	place_typed_item_grid(4, 1, pirate_ship)
 		
+	gridContainer.columns = Global.columns
 	for i in range(0, Global.columns * Global.rows):
 		var cell = grid_cell_scene.instantiate()
 		gridContainer.add_child(cell)
@@ -65,19 +66,6 @@ func _input(event: InputEvent) -> void:
 			place_item(3)
 		if event.keycode == KEY_5:
 			place_item(4)
-#		if event.keycode == KEY_UP:
-#			oceanCurrentDirection = Vector2i.UP
-#			advance()
-#		if event.keycode == KEY_RIGHT:
-#			oceanCurrentDirection = Vector2i.RIGHT
-#			advance()
-#		if event.keycode == KEY_DOWN:
-#			oceanCurrentDirection = Vector2i.DOWN
-#			advance()
-#		if event.keycode == KEY_LEFT:
-#			oceanCurrentDirection = Vector2i.LEFT
-#			advance()
-		
 
 func place_item(row: int) -> Item:
 	return place_item_grid(row, 0)
@@ -112,18 +100,21 @@ func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	return item
 
 func _on_item_destroyed(item: Item):
-	pass
+	print(item, " wants to be destroyed")
+	items.delete(item)
+	item.queue_free()
 
 func advance() -> void:
 	print("advance")
+	
 	move_typed_items_to_direction(Fish, Vector2i.LEFT)
 	move_typed_items_to_direction(PirateShip, Vector2i.DOWN)
 	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
 #	create_items()
 	
+	
 
 func move_typed_items_to_direction(itemType: Variant, direction: Vector2i) -> void:
-	print("Item type moving: ", itemType)
 	if direction == Vector2i.UP:
 		for row in range(0, items.rows):
 			for item in items.row(row):
@@ -151,10 +142,13 @@ func move_item(item: Item, direction: Vector2i) -> void:
 		var other = items.get_at(to.x, to.y)
 		if item.can_move(other, items):
 			item.position += Vector2(direction * Global.cell_size)
-			print("Previous ", item.name, " position ", item.position)
 			if other != null:
+				print("item: ", item, " is colliding with.", other)
 				item.on_collide(other)
 			items.swap(item.grid_loc, to)
+	else:
+		print(item.name, " Finished moving!")
+		item.finished_moving()
 
 func create_items() -> void:
 	createCooldown -= 1

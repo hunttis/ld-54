@@ -5,6 +5,10 @@ class_name PirateShip
 func _ready():
 	self.modulate = Color.CRIMSON
 
+func finished_moving():
+	Global.village_attacked(1)
+	destroy()
+	
 #func can_move(i: int, row: Array) -> bool:
 #	if i == row.size() - 2:
 #		state = State.Immobile

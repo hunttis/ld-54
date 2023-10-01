@@ -13,7 +13,6 @@ enum State {
 @export var health: int = 1000
 var grid_loc: Vector2i = Vector2i.ZERO
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	if state == State.Movable:
 		self.modulate = Color.GREEN
@@ -21,26 +20,17 @@ func _ready():
 		self.modulate = Color.GRAY
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
 func can_move(other: Item, items: GridItems) -> bool:
 	return other == null
 
-#func can_move(i: int, row: Array) -> bool:
-#	var right: Item = row[i + 1] if i < row.size() - 1 else null
-#	return state != State.Immobile and right == null
-
 func on_collide(other: Item):
-	pass
-
-func on_produce():
-	pass
-
-func on_collect():
 	pass
 
 func destroy():
 	destroyed.emit(self)
 
+func finished_moving():
+	pass

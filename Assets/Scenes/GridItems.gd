@@ -18,8 +18,8 @@ func init(columns: int, rows: int) -> void:
 	self.rows = Global.rows
 
 func contains(pos: Vector2i) -> bool:
-	return (pos.x >= 0 or pos.x < columns) and (pos.y >= 0 or pos.y < rows)
-
+	return pos.x >= 0 and pos.x < columns and pos.y >= 0 and pos.y < rows
+	
 func get_at(x: int, y: int) -> Item:
 	var i = _to_index(x, y)
 	if i < 0 or i >= items.size():
@@ -56,3 +56,9 @@ func column(column_index: int) -> Array[Item]:
 	for i in range(start, items.size(), columns):
 		result.push_back(get_idx(i))
 	return result
+
+func delete(item: Item) -> void:
+	var index_of_item = items.find(item)
+	if index_of_item > 0:
+		items[index_of_item] = null
+	
