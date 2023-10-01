@@ -6,39 +6,42 @@ extends Control
 @onready var villageTutorial = $VBoxContainer/BottomTutorial/VillageTutorial
 @onready var movementTutorial = $VBoxContainer/MiddleTutorial/MovementTutorial
 
-
 signal tutorial_finished()
 
-var timer = 0
-var howLongToShowOneTutorial = 5
+var step = 0
 
 func _ready():
 	hideAllTutorials()
 	if !Global.show_tutorial:
 		tutorial_finished.emit()
+	else:
+		hideAllTutorials()
+		pirateTutorial.visible = true
 
-func _process(delta):
-	timer += delta
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		_next_step()
+
+func _next_step():
+	step += 1
 	if Global.show_tutorial:
-		if timer < howLongToShowOneTutorial:
-			hideAllTutorials()
-			pirateTutorial.visible = true
-		elif timer < howLongToShowOneTutorial * 2:
+		if step == 1:
 			hideAllTutorials()
 			fishingShipTutorial.visible = true
-		elif timer < howLongToShowOneTutorial * 3:
+		elif step == 2:
 			hideAllTutorials()
 			fishTutorial.visible = true
-		elif timer < howLongToShowOneTutorial * 4:
+		elif step == 3:
 			hideAllTutorials()
 			villageTutorial.visible = true
-		elif timer < howLongToShowOneTutorial * 5:
+		elif step == 4:
 			hideAllTutorials()
 			movementTutorial.visible = true
-		elif timer < howLongToShowOneTutorial * 6:
+		elif step == 5:
 			hideAllTutorials()
 			tutorial_finished.emit()
 			Global.show_tutorial = false
+	
 
 func hideAllTutorials():
 		pirateTutorial.visible = false

@@ -132,3 +132,9 @@ text = "Fight pirate ships and catch fish
 with your boats to save your village"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_next_step"]
