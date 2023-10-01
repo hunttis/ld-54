@@ -1,6 +1,7 @@
 extends "res://Assets/Scenes/Item.gd"
 
 class_name FishingShip
+@onready var soundEngine = $/root/Main/SoundEngine
 
 var _health = 2
 
@@ -11,6 +12,7 @@ func on_collide(other: Item):
 		Global.collect_points(Global.POINTS__FISH_COLLECTION)
 		Global.collect_fish(2)
 		other.destroy()
+		soundEngine.play_got_fish()
 	if is_instance_of(other, PirateShip):
 		Global.collect_points(Global.POINTS__FISHING_SHIP_DESTROY)
 		_health -= 1
