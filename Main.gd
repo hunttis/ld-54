@@ -11,7 +11,7 @@ var gameover_screen
 var mainmenu_screen
 var playmode_screen
 
-@export var default_screen: Global.Screens = Global.Screens.PLAY_MODE
+@export var default_screen: Global.Screens = Global.Screens.MAIN_MENU
 
 func _ready():
 	change_screen(default_screen)

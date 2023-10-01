@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=18 format=3 uid="uid://iglduxfsjxr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
 [ext_resource type="Script" path="res://Assets/Global/SoundEngine.gd" id="2_7lwyg"]
@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://3wdtoly5rrtq" path="res://Assets/Audio/splash/splash-02.wav" id="12_7dpr8"]
 [ext_resource type="AudioStream" uid="uid://dldxlq4am6bi6" path="res://Assets/Audio/splash/splash-03.wav" id="13_seppq"]
 [ext_resource type="AudioStream" uid="uid://c1s1s7w6ngav0" path="res://Assets/Audio/splash/splash-04.wav" id="14_cla3n"]
+[ext_resource type="AudioStream" uid="uid://bacl4quixn4r0" path="res://Assets/Audio/arrrrrs/arrrrr-01.wav" id="16_u57ub"]
+[ext_resource type="AudioStream" uid="uid://lscwpo63jtn3" path="res://Assets/Audio/arrrrrs/arrrrr-02.wav" id="17_f35y3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5wul1")
@@ -63,3 +65,9 @@ stream = ExtResource("13_seppq")
 
 [node name="Splash04" type="AudioStreamPlayer" parent="SoundEngine"]
 stream = ExtResource("14_cla3n")
+
+[node name="Arrrrr01" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("16_u57ub")
+
+[node name="Arrrrr02" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("17_f35y3")
