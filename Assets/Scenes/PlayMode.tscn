@@ -17,6 +17,7 @@ position = Vector2(143, 1)
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_bfok7")]
 
 [node name="Tutorial" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
