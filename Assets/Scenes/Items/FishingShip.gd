@@ -23,6 +23,7 @@ func on_collide(other: Item):
 	if is_instance_of(other, Whirlpool):
 		Global.collect_points(Global.POINTS__FISHING_SHIP_COLLISION_WITH_A_WHIRLPOOL)
 		self.destroy()
+		soundEngine.play_oh_no()
 
 func can_move(other: Item, items: GridItems) -> bool:
 	return true
