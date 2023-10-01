@@ -13,6 +13,7 @@ enum Turn {
 var turn := Turn.Tutorial
 
 func _ready() -> void:
+	Global.reset_stats()
 	grid.advance_done.connect(_on_turn_done)
 	
 

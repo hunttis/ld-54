@@ -30,6 +30,12 @@ enum Screens {
 func _ready():
 	pass
 
+func reset_stats():
+	fish = 0
+	hunger = 0
+	village_health = 5
+	score = 0
+
 func collect_fish(amount: int):
 	fish += amount
 
