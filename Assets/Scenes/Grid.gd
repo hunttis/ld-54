@@ -54,20 +54,21 @@ func _process(delta) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		advance()
-	elif event.is_action_pressed("ui_up"):
-		oceanCurrentDirection = Vector2i.UP
-		advance()
-	elif event.is_action_pressed("ui_right"):
-		oceanCurrentDirection = Vector2i.RIGHT
-		advance()
-	elif event.is_action_pressed("ui_down"):
-		oceanCurrentDirection = Vector2i.DOWN
-		advance()
-	elif event.is_action_pressed("ui_left"):
-		oceanCurrentDirection = Vector2i.LEFT
-		advance()
+	if Global.game_in_progress:
+		if event.is_action_pressed("ui_accept"):
+			advance()
+		elif event.is_action_pressed("ui_up"):
+			oceanCurrentDirection = Vector2i.UP
+			advance()
+		elif event.is_action_pressed("ui_right"):
+			oceanCurrentDirection = Vector2i.RIGHT
+			advance()
+		elif event.is_action_pressed("ui_down"):
+			oceanCurrentDirection = Vector2i.DOWN
+			advance()
+		elif event.is_action_pressed("ui_left"):
+			oceanCurrentDirection = Vector2i.LEFT
+			advance()
 
 func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	var gap_offset_x = clamp(grid_gap * (column - 1), 0, grid_gap * Global.columns)

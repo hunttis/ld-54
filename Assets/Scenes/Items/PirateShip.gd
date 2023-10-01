@@ -13,9 +13,11 @@ func can_move(other: Item, items: GridItems) -> bool:
 
 func on_collide(other: Item):
 	if is_instance_of(other, FishingShip):
+		Global.collect_points(Global.POINTS__FISHING_SHIP_DESTROY)
 		other.destroy()
 	if is_instance_of(other, Fish):
 		other.destroy()
 	if is_instance_of(other, Rock):
+		Global.collect_points(Global.POINTS__PIRATE_SHIP_DESTROY)
 		other.destroy()
 		self.destroy()
