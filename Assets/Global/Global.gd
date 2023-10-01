@@ -17,6 +17,7 @@ var POINTS__FISHING_SHIP_DESTROY = -10
 var POINTS__FISHING_SHIP_COLLISION_WITH_A_WHIRLPOOL = -10
 
 var game_in_progress = true
+var game_over_reason = ""
 
 var show_tutorial = true
 
@@ -40,9 +41,10 @@ func village_attacked(amount: int):
 	print("Remaining village health: ", village_health)
 	
 	if village_health <= 0:
-		show_game_over_screen()
+		show_game_over_screen("Villange has run out of health points!")
 	
-func show_game_over_screen():
+func show_game_over_screen(reason: String):
 	game_in_progress = false
+	game_over_reason = reason
 	print("Game over! Final score: ", score, " and fish collected: ", fish)
 	main_node.change_screen(Screens.GAME_OVER)

@@ -170,6 +170,9 @@ func create_items() -> void:
 			var new_item = whirlpool_scene.instantiate()
 			place_typed_item_grid(points[0].x, points[0].y, new_item)
 
+	if items.fishing_ships_count() == 0:
+		Global.show_game_over_screen("No fishing ships left!")
+
 func _remove_moving(item: Item):
 	if moving_items.is_empty():
 		return
