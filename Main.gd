@@ -15,7 +15,6 @@ var playmode_screen
 
 func _ready():
 	change_screen(default_screen)
-	%SoundEngine.play_music()
 
 #func _input(event: InputEvent) -> void:
 #	if event.is_action_pressed("ui_up"):
@@ -35,9 +34,11 @@ func change_screen(target_screen: Global.Screens):
 	if target_screen == Global.Screens.MAIN_MENU:
 		mainmenu_screen = mainmenu_scene.instantiate()
 		current_screen.add_child(mainmenu_screen)
+		%SoundEngine.play_menu_music()
 	elif target_screen == Global.Screens.PLAY_MODE:
 		playmode_screen = playmode_scene.instantiate()
 		current_screen.add_child(playmode_screen)
+		%SoundEngine.play_game_music()
 	elif target_screen == Global.Screens.GAME_OVER:
 		%SoundEngine.play_thats_it()
 		gameover_screen = gameover_scene.instantiate()

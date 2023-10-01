@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=29 format=3 uid="uid://iglduxfsjxr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
 [ext_resource type="Script" path="res://Assets/Global/SoundEngine.gd" id="2_7lwyg"]
 [ext_resource type="AudioStream" uid="uid://b124e0tkw7cnv" path="res://Assets/Audio/got-fish/got-fish-07.wav" id="3_aclcl"]
 [ext_resource type="AudioStream" uid="uid://cqp678fos3vtv" path="res://Assets/Audio/LD.mp3" id="3_k3wlk"]
+[ext_resource type="AudioStream" uid="uid://cr6cvmcf0fjnn" path="res://Assets/Audio/Menu.mp3" id="3_xr8su"]
 [ext_resource type="AudioStream" uid="uid://217f8f7vxtge" path="res://Assets/Audio/got-fish/got-fish-02.wav" id="4_x7yw4"]
 [ext_resource type="AudioStream" uid="uid://bwnc7fy5ed0cs" path="res://Assets/Audio/got-fish/got-fish-01.wav" id="6_31jh7"]
 [ext_resource type="AudioStream" uid="uid://drw8mw3r16q0j" path="res://Assets/Audio/got-fish/got-fish-03.wav" id="7_deepu"]
@@ -37,7 +38,10 @@ script = ExtResource("1_5wul1")
 unique_name_in_owner = true
 script = ExtResource("2_7lwyg")
 
-[node name="Music" type="AudioStreamPlayer" parent="SoundEngine"]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("3_xr8su")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="SoundEngine"]
 stream = ExtResource("3_k3wlk")
 
 [node name="GotFish01" type="AudioStreamPlayer" parent="SoundEngine"]

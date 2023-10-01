@@ -18,8 +18,13 @@ func is_muted():
 func toggle_mute():
 	AudioServer.set_bus_mute(master_audio_bus, not is_muted())
 
-func play_music():
-	$Music.play()
+func play_menu_music():
+	$GameMusic.stop()
+	$MenuMusic.play()
+
+func play_game_music():
+	$MenuMusic.stop()
+	$GameMusic.play()
 
 func play_splash():
 	var random_index = rng.randi_range(0, splash_players.size() - 1)
