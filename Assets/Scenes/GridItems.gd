@@ -4,6 +4,8 @@ class_name GridItems
 
 var items: Array[Item] = []
 
+var _points: Array[Vector2i] = []
+
 var columns := 0
 var rows := 0
 
@@ -13,6 +15,12 @@ func _to_index(x: int, y: int) -> int:
 func init(columns: int, rows: int) -> void:
 	items.resize(columns * rows)
 	items.fill(null)
+	
+	points.resize(columns * rows)
+	for col in columns:
+		for row in rows:
+			var i = _to_index(col, row)
+			points[i] = Vector2i(col, row)
 	print("Grid array size: ", items.size())
 	self.columns = Global.columns
 	self.rows = Global.rows
@@ -61,4 +69,15 @@ func delete(item: Item) -> void:
 	var index_of_item = items.find(item)
 	if index_of_item > 0:
 		items[index_of_item] = null
-	
+
+func random_empty_points(max_count: int) -> Array[Vector2i]:
+	var points = _points.duplicate()
+	points.shuffle()
+	var result = []
+	for point in points:
+		var item = get_at(point.x, point.y)
+		if not item:
+			result.push(point)
+		if result.size() >= max_count:
+			return result
+	return result
