@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcnw3g5iqi7j7"]
+[gd_scene load_steps=7 format=3 uid="uid://b6ofqxhwlg1l5"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Background/ParallaxLayer.gd" id="1_jsfxj"]
 [ext_resource type="Texture2D" uid="uid://bhabb2x0lfw87" path="res://Assets/Images/waves.png" id="2_6hwga"]

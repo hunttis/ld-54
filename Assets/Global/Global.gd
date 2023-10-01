@@ -41,7 +41,7 @@ func village_attacked(amount: int):
 	print("Remaining village health: ", village_health)
 	
 	if village_health <= 0:
-		show_game_over_screen("Villange has run out of health points!")
+		show_game_over_screen("Village has run out of health points!")
 	
 func show_game_over_screen(reason: String):
 	game_in_progress = false
