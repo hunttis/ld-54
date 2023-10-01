@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Assets/Scenes/PlayMode.gd" id="1_2god3"]
 [ext_resource type="PackedScene" uid="uid://bdgsptuj5gtfj" path="res://Assets/Scenes/Grid.tscn" id="1_i5qmb"]
 [ext_resource type="PackedScene" uid="uid://dgpv1g6tdho7a" path="res://Assets/UI/UI.tscn" id="2_m27sc"]
-[ext_resource type="PackedScene" uid="uid://dcnw3g5iqi7j7" path="res://Background.tscn" id="4_bfok7"]
-[ext_resource type="Script" path="res://Assets/Scenes/Tutorial.gd" id="5_lhcyx"]
+[ext_resource type="PackedScene" path="res://Background.tscn" id="4_bfok7"]
+[ext_resource type="PackedScene" uid="uid://djb5o42t63sgn" path="res://Assets/Scenes/tutorial.tscn" id="5_pdiex"]
 
 [node name="PlayMode" type="Node2D"]
 script = ExtResource("1_2god3")
@@ -16,116 +16,4 @@ position = Vector2(143, 1)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_bfok7")]
 
-[node name="Tutorial" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 800.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("5_lhcyx")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial"]
-custom_minimum_size = Vector2(1280, 800)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TopTutorial" type="Control" parent="Tutorial/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/VBoxContainer/TopTutorial"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="Tutorial/VBoxContainer/TopTutorial/PanelContainer"]
-custom_minimum_size = Vector2(1280, 2.08165e-12)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 12
-theme_override_constants/shadow_outline_size = 16
-theme_override_font_sizes/font_size = 64
-text = "Pirate ships come in from the top "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control2" type="Control" parent="Tutorial/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/VBoxContainer"]
-custom_minimum_size = Vector2(1280, 2.08165e-12)
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Fishing ship tutorial" type="Label" parent="Tutorial/VBoxContainer/HBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 12
-theme_override_constants/shadow_outline_size = 16
-theme_override_font_sizes/font_size = 64
-text = "Fishing ships
-come in
-from the left"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control" type="Control" parent="Tutorial/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="Tutorial/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="FishTutorial" type="Label" parent="Tutorial/VBoxContainer/HBoxContainer/PanelContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 12
-theme_override_constants/shadow_outline_size = 16
-theme_override_font_sizes/font_size = 64
-text = "Fish come in
-from the right"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control" type="Control" parent="Tutorial/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-
-[node name="BottomTutorial" type="Control" parent="Tutorial/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/VBoxContainer/BottomTutorial"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="Tutorial/VBoxContainer/BottomTutorial/PanelContainer"]
-custom_minimum_size = Vector2(1280, 2.08165e-12)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 12
-theme_override_constants/shadow_outline_size = 16
-theme_override_font_sizes/font_size = 64
-text = "Protect your village at the
-bottom and fish for fish"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Tutorial" parent="." instance=ExtResource("5_pdiex")]
