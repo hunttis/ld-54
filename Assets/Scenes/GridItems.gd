@@ -16,11 +16,11 @@ func init(columns: int, rows: int) -> void:
 	items.resize(columns * rows)
 	items.fill(null)
 	
-	points.resize(columns * rows)
+	_points.resize(columns * rows)
 	for col in columns:
 		for row in rows:
 			var i = _to_index(col, row)
-			points[i] = Vector2i(col, row)
+			_points[i] = Vector2i(col, row)
 	print("Grid array size: ", items.size())
 	self.columns = Global.columns
 	self.rows = Global.rows
