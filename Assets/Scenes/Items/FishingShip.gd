@@ -1,4 +1,4 @@
-extends "res://Assets/Scenes/Floating.gd"
+extends "res://Assets/Scenes/Item.gd"
 
 class_name FishingShip
 
@@ -13,6 +13,4 @@ func on_collide(other: Item):
 		self.destroy()
 
 func can_move(other: Item, items: GridItems) -> bool:
-#	if is_instance_of(other, Fish) || is_instance_of(other, PirateShip) || other == null:
 	return true
-#	return false

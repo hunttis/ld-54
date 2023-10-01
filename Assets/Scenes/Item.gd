@@ -1,8 +1,9 @@
-extends AnimatedSprite2D
+extends Node2D
 
 class_name Item
 
 signal destroyed(item: Item)
+signal move_complete(item: Item)
 
 enum State {
 	Movable,
@@ -11,39 +12,30 @@ enum State {
 
 @export var state: State = State.Movable
 @export var health: int = 1000
+var MAX_SPEED = 10
+var MIN_MOVEMENT_THRESHOLD = 10
+var target: Vector2 = Vector2.ZERO
 var grid_loc: Vector2i = Vector2i.ZERO
 
 func _ready():
-	if state == State.Movable:
-		self.modulate = Color.GREEN
-	if state == State.Immobile:
-		self.modulate = Color.GRAY
+	pass
 
+func _process(delta: float) -> void:
+	if position.is_equal_approx(target):
+		return
 
-func _process(delta):
-	
-	var MAX_SPEED = 10
-	var MIN_MOVEMENT_THRESHOLD = 10
-	var currentPosition = position
-	var targetPosition = grid_loc * Global.cell_size + Vector2i(Global.cell_size / 2, Global.cell_size / 2)
-	
-	var distance: Vector2 = Vector2(targetPosition) - Vector2(currentPosition)
+	var distance: Vector2 = target - position
 	if distance.length() > MIN_MOVEMENT_THRESHOLD:
 		var movementSpeed = distance.normalized() * MAX_SPEED
 		position += movementSpeed
 	else:
-		position = targetPosition
-#	if currentPosition.x > targetPosition.x:
-#		position.x -= 3
-#	if currentPosition.x < targetPosition.x:
-#		position.x += 3
-#	if currentPosition.y > targetPosition.y:
-#		position.y -= 3
-#	if currentPosition.y < targetPosition.y:
-#		position.y += 3
-	
-	
-	
+		position = target
+		move_complete.emit(self)
+
+func move_to(to: Vector2) -> void:
+	print("Move ", name, " from ", position, " to ", to)
+	self.target = to
+
 func can_move(other: Item, items: GridItems) -> bool:
 	return other == null
 

@@ -1,21 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://crgimayxixsq2"]
+[gd_scene load_steps=6 format=3 uid="uid://crgimayxixsq2"]
 
-[ext_resource type="Texture2D" uid="uid://bkrdd7ceom6hu" path="res://Assets/Images/fishing_boat.png" id="1_afajp"]
 [ext_resource type="Script" path="res://Assets/Scenes/Items/FishingShip.gd" id="1_p5f83"]
+[ext_resource type="Texture2D" uid="uid://bkrdd7ceom6hu" path="res://Assets/Images/fishing_boat.png" id="2_o45f6"]
+[ext_resource type="Script" path="res://Assets/Scenes/Floating.gd" id="3_2p0cf"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sg3em"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_85htt"]
+atlas = ExtResource("2_o45f6")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qulvr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_afajp")
+"texture": SubResource("AtlasTexture_85htt")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="FishingShip" type="AnimatedSprite2D"]
-scale = Vector2(0.15, 0.15)
-sprite_frames = SubResource("SpriteFrames_sg3em")
+[node name="FishingShip" type="Node2D"]
 script = ExtResource("1_p5f83")
-health = 3
+
+[node name="FishingShipSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.167, 0.167)
+sprite_frames = SubResource("SpriteFrames_qulvr")
+script = ExtResource("3_2p0cf")

@@ -1,5 +1,9 @@
 extends Node2D
 
+class_name Grid
+
+signal advance_done();
+
 @onready var item_scene = preload("res://Assets/Scenes/Item.tscn")
 @onready var fishing_ship_scene = preload("res://Assets/Scenes/Items/FishingShip.tscn")
 @onready var fish_scene = preload("res://Assets/Scenes/Items/Fish.tscn")
@@ -22,8 +26,9 @@ var createPirateCooldown = 2
 var createRockCooldownMAX = 5
 var createRockCooldown = 2
 
-var oceanCurrentDirection := Vector2i.ZERO
 var grid_gap: int = 0
+
+var moving_items: Array[Item] = []
 
 @onready var items := GridItems.new()
 
@@ -37,37 +42,17 @@ func _ready() -> void:
 	
 	var fish = fish_scene.instantiate()
 	place_typed_item_grid(Global.columns - 2, 3, fish)
-	
+
 	var pirate_ship = pirate_scene.instantiate()
 	place_typed_item_grid(4, 1, pirate_ship)
 
-#	var rock = rock_scene.instantiate()
-#	place_typed_item_grid(5, 4, rock)
-	
 	gridContainer.columns = Global.columns
 	for i in range(0, Global.columns * Global.rows):
 		var cell = grid_cell_scene.instantiate()
 		gridContainer.add_child(cell)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta) -> void:
-	pass
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		advance()
-	elif event.is_action_pressed("ui_up"):
-		oceanCurrentDirection = Vector2i.UP
-		advance()
-	elif event.is_action_pressed("ui_right"):
-		oceanCurrentDirection = Vector2i.RIGHT
-		advance()
-	elif event.is_action_pressed("ui_down"):
-		oceanCurrentDirection = Vector2i.DOWN
-		advance()
-	elif event.is_action_pressed("ui_left"):
-		oceanCurrentDirection = Vector2i.LEFT
-		advance()
+func start_advance(item_type: Variant, direction: Vector2i):
+	move_typed_items_to_direction(item_type, direction)
 
 func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	var gap_offset_x = clamp(grid_gap * (column - 1), 0, grid_gap * Global.columns)
@@ -75,29 +60,20 @@ func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	var gap_offset_y = clamp(grid_gap * (row - 1), 0, grid_gap * Global.rows)
 	var item_x = Global.cell_size * column + Global.cell_size / 2 + gap_offset_x
 	var item_y = Global.cell_size * row + Global.cell_size / 2 + gap_offset_y
+	var item_pos = Vector2(item_x, item_y)
 	# TODO: grid gap size
-	item.position.x = item_x
-	item.position.y = item_y
+	item.position = item_pos
+	item.target = item_pos
 	item.grid_loc = Vector2i(column, row)
 	items_node.add_child(item, true)
 	items.set_at(column, row, item)
 	item.destroyed.connect(_on_item_destroyed)
+	item.move_complete.connect(_on_move_complete)
 	return item
 
 func _on_item_destroyed(item: Item):
 	items.delete(item)
 	item.queue_free()
-
-func advance() -> void:
-	print("advance")
-	
-	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
-	move_typed_items_to_direction(Fish, Vector2i.LEFT)
-	move_typed_items_to_direction(PirateShip, Vector2i.DOWN)
-#	move_typed_items_to_direction(Rock, Vector2i.LEFT)
-	create_items()
-
-	
 
 func move_typed_items_to_direction(itemType: Variant, direction: Vector2i) -> void:
 	if direction == Vector2i.UP:
@@ -120,7 +96,10 @@ func move_typed_items_to_direction(itemType: Variant, direction: Vector2i) -> vo
 			for item in items.column(col):
 				if is_instance_of(item, itemType):
 					move_item(item, direction)
-	
+	# There were no items to move, complete advance
+	if moving_items.is_empty():
+		advance_done.emit()
+
 func move_item(item: Item, direction: Vector2i) -> void:
 	var to := item.grid_loc + direction
 	if item && items.contains(to):
@@ -130,6 +109,8 @@ func move_item(item: Item, direction: Vector2i) -> void:
 				print("item: ", item.name, " is colliding with.", other.name)
 				item.on_collide(other)
 			items.swap(item.grid_loc, to)
+			item.move_to(to * Global.cell_size + Vector2i(Global.cell_size / 2, Global.cell_size / 2))
+			moving_items.push_back(item)
 	else:
 		print(item.name, " Finished moving!")
 		item.finished_moving()
@@ -146,8 +127,7 @@ func create_items() -> void:
 		if fish_row >= 0:
 			var new_item = fish_scene.instantiate()
 			place_typed_item_grid(Global.columns - 1, fish_row, new_item)
-		
-	
+
 	if createPirateCooldown <= 0:
 		createPirateCooldown = createPirateCooldownMAX
 		var pirate_column = items.random_empty_point_on_row(0)
@@ -163,7 +143,7 @@ func create_items() -> void:
 		if fishing_row >= 0:
 			var new_item = fishing_ship_scene.instantiate()
 			place_typed_item_grid(0, fishing_row, new_item)
-	
+
 	if createRockCooldown <= 0:
 		createRockCooldown = createRockCooldownMAX
 		var points = items.random_empty_points(1)
@@ -171,4 +151,9 @@ func create_items() -> void:
 		if points.size() == 1:
 			var new_item = rock_scene.instantiate()
 			place_typed_item_grid(points[0].x, points[0].y, new_item)
-		
+
+func _on_move_complete(item: Item):
+	moving_items.erase(item)
+	if moving_items.is_empty():
+		advance_done.emit()
+

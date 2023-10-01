@@ -1,4 +1,4 @@
-extends "res://Assets/Scenes/Item.gd"
+extends AnimatedSprite2D
 
 var _centre
 var RotateSpeed = 1
