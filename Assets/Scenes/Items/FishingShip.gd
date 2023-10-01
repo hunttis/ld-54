@@ -11,8 +11,8 @@ func on_collide(other: Item):
 		Global.collect_points(Global.POINTS__FISHING_SHIP_DESTROY)
 		other.destroy()
 		self.destroy()
-	if is_instance_of(other, Rock):
-		Global.collect_points(Global.POINTS__FISHING_SHIP_COLLISION_WITH_A_ROCK)
+	if is_instance_of(other, Whirlpool):
+		Global.collect_points(Global.POINTS__FISHING_SHIP_COLLISION_WITH_A_WHIRLPOOL)
 		self.destroy()
 
 func can_move(other: Item, items: GridItems) -> bool:

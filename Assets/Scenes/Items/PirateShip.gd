@@ -16,7 +16,7 @@ func on_collide(other: Item):
 		other.destroy()
 	if is_instance_of(other, Fish):
 		other.destroy()
-	if is_instance_of(other, Rock):
+	if is_instance_of(other, Whirlpool):
 		Global.collect_points(Global.POINTS__PIRATE_SHIP_DESTROY)
 		other.destroy()
 		self.destroy()
