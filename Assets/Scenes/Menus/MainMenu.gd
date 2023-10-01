@@ -18,5 +18,5 @@ func _on_tutorial_button_pressed():
 	tutorial_button.text = "Tutorial: On" if Global.show_tutorial else "Tutorial: Off"
 
 func _on_sound_button_pressed():
-	sound_button.text = "Sounds: Off" if soundEngine.is_muted() else "Sounds: On"
+	sound_button.text = "Sounds: On" if soundEngine.is_muted() else "Sounds: Off"
 	soundEngine.toggle_mute()
