@@ -3,7 +3,6 @@ extends Node2D
 class_name Item
 
 signal destroyed(item: Item)
-signal move_complete(item: Item)
 
 enum State {
 	Movable,
@@ -30,10 +29,8 @@ func _process(delta: float) -> void:
 		position += movementSpeed
 	else:
 		position = target
-		move_complete.emit(self)
 
 func move_to(to: Vector2) -> void:
-	print("Move ", name, " from ", position, " to ", to)
 	self.target = to
 
 func can_move(other: Item, items: GridItems) -> bool:
