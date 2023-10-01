@@ -17,4 +17,5 @@ animations = [{
 [node name="Fish" type="AnimatedSprite2D"]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_j4qk2")
+flip_h = true
 script = ExtResource("2_8f338")
