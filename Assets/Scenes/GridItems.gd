@@ -109,3 +109,12 @@ func random_empty_points(max_count: int) -> Array[Vector2i]:
 		if result.size() >= max_count:
 			return result
 	return result
+
+func fishing_ships_count() -> int:
+	var count = 0
+	
+	for item in items:
+		if is_instance_of(item, FishingShip):
+			count += 1
+			
+	return count
