@@ -1,9 +1,6 @@
-extends "res://Assets/Scenes/Item.gd"
+extends "res://Assets/Scenes/Floating.gd"
 
 class_name Fish
-
-func _ready():
-	self.modulate = Color.DARK_BLUE
 
 func finished_moving():
 	destroy()
