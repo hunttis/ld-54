@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=22 format=3 uid="uid://iglduxfsjxr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
 [ext_resource type="Script" path="res://Assets/Global/SoundEngine.gd" id="2_7lwyg"]
@@ -17,6 +17,10 @@
 [ext_resource type="AudioStream" uid="uid://c1s1s7w6ngav0" path="res://Assets/Audio/splash/splash-04.wav" id="14_cla3n"]
 [ext_resource type="AudioStream" uid="uid://bacl4quixn4r0" path="res://Assets/Audio/arrrrrs/arrrrr-01.wav" id="16_u57ub"]
 [ext_resource type="AudioStream" uid="uid://lscwpo63jtn3" path="res://Assets/Audio/arrrrrs/arrrrr-02.wav" id="17_f35y3"]
+[ext_resource type="AudioStream" uid="uid://b1305h2ax1cck" path="res://Assets/Audio/thats-it/thats-it-01.wav" id="18_fbe7j"]
+[ext_resource type="AudioStream" uid="uid://dp75xisp4ccoq" path="res://Assets/Audio/thats-it/thats-it-02.wav" id="19_eh8f4"]
+[ext_resource type="AudioStream" uid="uid://c0ftxandx4pec" path="res://Assets/Audio/thats-it/thats-it-03.wav" id="20_syhao"]
+[ext_resource type="AudioStream" uid="uid://cqrd6ybajs4dl" path="res://Assets/Audio/thats-it/thats-it-04.wav" id="21_v364j"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5wul1")
@@ -71,3 +75,15 @@ stream = ExtResource("16_u57ub")
 
 [node name="Arrrrr02" type="AudioStreamPlayer" parent="SoundEngine"]
 stream = ExtResource("17_f35y3")
+
+[node name="ThatsIt01" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("18_fbe7j")
+
+[node name="ThatsIt02" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("19_eh8f4")
+
+[node name="ThatsIt03" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("20_syhao")
+
+[node name="ThatsIt04" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("21_v364j")

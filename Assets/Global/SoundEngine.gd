@@ -6,6 +6,7 @@ var rng = RandomNumberGenerator.new()
 @onready var splash_players = [$Splash01, $Splash02, $Splash03, $Splash04]
 @onready var got_fish_players = [$GotFish01, $GotFish02, $GotFish03, $GotFish04, $GotFish05, $GotFish06, $GotFish07, $GotFish08]
 @onready var arrrrr_players = [$Arrrrr01, $Arrrrr02]
+@onready var thats_it_players = [$ThatsIt01, $ThatsIt02, $ThatsIt03, $ThatsIt04]
 
 func _ready():
 	rng.randomize()
@@ -30,3 +31,7 @@ func play_got_fish():
 func play_arrrrr():
 	var random_index = rng.randi_range(0, arrrrr_players.size() - 1)
 	arrrrr_players[random_index].play()
+
+func play_thats_it():
+	var random_index = rng.randi_range(0, thats_it_players.size() - 1)
+	thats_it_players[random_index].play()

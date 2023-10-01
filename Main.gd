@@ -39,5 +39,6 @@ func change_screen(target_screen: Global.Screens):
 		playmode_screen = playmode_scene.instantiate()
 		current_screen.add_child(playmode_screen)
 	elif target_screen == Global.Screens.GAME_OVER:
+		%SoundEngine.play_thats_it()
 		gameover_screen = gameover_scene.instantiate()
 		current_screen.add_child(gameover_screen)
