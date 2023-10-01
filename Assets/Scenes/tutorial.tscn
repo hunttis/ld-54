@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://djb5o42t63sgn"]
+[gd_scene load_steps=2 format=3 uid="uid://c766wq3btxghr"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Tutorial.gd" id="1_s1ibj"]
 
@@ -37,7 +37,8 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 16
 theme_override_font_sizes/font_size = 64
-text = "Pirate ships come in from the top "
+text = "Pirate ships sail from the north towards
+your village in the south"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -59,8 +60,8 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 16
 theme_override_font_sizes/font_size = 64
-text = "Move your ships with arrow keys
-All ships move at once"
+text = "Move every boat at once with
+arrow keys, stay still with space"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -79,9 +80,8 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 16
 theme_override_font_sizes/font_size = 64
-text = "Fishing ships
-come in
-from the left"
+text = "Fishing boats
+enter from the west"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -100,8 +100,8 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 16
 theme_override_font_sizes/font_size = 64
-text = "Fish come in
-from the right"
+text = "Fish migrate from
+east to west"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -128,8 +128,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 16
 theme_override_font_sizes/font_size = 64
-text = "Protect your village at the
-bottom and catch fish
-with your ships"
+text = "Fight pirate ships and catch fish
+with your boats to save your village"
 horizontal_alignment = 1
 vertical_alignment = 1
