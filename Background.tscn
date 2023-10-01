@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcnw3g5iqi7j7"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Background/ParallaxLayer.gd" id="1_jsfxj"]
+[ext_resource type="Texture2D" uid="uid://bhabb2x0lfw87" path="res://Assets/Images/waves.png" id="2_6hwga"]
+[ext_resource type="Script" path="res://Assets/Scenes/Background/ParallaxLayer2.gd" id="3_gex5b"]
+[ext_resource type="Script" path="res://Assets/Scenes/Background/ParallaxLayer3.gd" id="4_3aqut"]
+[ext_resource type="Script" path="res://Assets/Scenes/Background/ParallaxLayer4.gd" id="5_14iih"]
+
+[sub_resource type="GDScript" id="GDScript_71q2e"]
+script/source = "extends ParallaxBackground
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = SubResource("GDScript_71q2e")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+script = ExtResource("1_jsfxj")
+
+[node name="Waves" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(635, -142)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_6hwga")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+script = ExtResource("3_gex5b")
+
+[node name="Waves2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(551, 54)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_6hwga")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.85, 0.85)
+script = ExtResource("4_3aqut")
+
+[node name="Waves3" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(679, 273)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_6hwga")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.95, 0.95)
+script = ExtResource("5_14iih")
+
+[node name="Waves4" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(614, 492)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_6hwga")
