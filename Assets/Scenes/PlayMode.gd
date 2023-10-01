@@ -28,6 +28,8 @@ func _input(event: InputEvent) -> void:
 			_play_player_turn(Vector2i.DOWN)
 		elif event.is_action_pressed("ui_left"):
 			_play_player_turn(Vector2i.LEFT)
+		elif event.is_action("ui_accept"):
+			_play_player_turn(Vector2i.ZERO)
 
 func _play_player_turn(direction: Vector2i):
 	#soundEngine.play_got_fish()
