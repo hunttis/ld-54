@@ -56,7 +56,6 @@ func start_advance(item_type: Variant, direction: Vector2i):
 
 func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 	var gap_offset_x = clamp(grid_gap * (column - 1), 0, grid_gap * Global.columns)
-	print("GAP: ", gap_offset_x)
 	var gap_offset_y = clamp(grid_gap * (row - 1), 0, grid_gap * Global.rows)
 	var item_x = Global.cell_size * column + Global.cell_size / 2 + gap_offset_x
 	var item_y = Global.cell_size * row + Global.cell_size / 2 + gap_offset_y
@@ -74,6 +73,7 @@ func place_typed_item_grid(column: int, row: int, item: Item) -> Item:
 func _on_item_destroyed(item: Item):
 	items.delete(item)
 	item.queue_free()
+	_remove_moving(item)
 
 func move_typed_items_to_direction(itemType: Variant, direction: Vector2i) -> void:
 	if direction == Vector2i.UP:
@@ -153,7 +153,12 @@ func create_items() -> void:
 			place_typed_item_grid(points[0].x, points[0].y, new_item)
 
 func _on_move_complete(item: Item):
+	_remove_moving(item)
+
+func _remove_moving(item: Item):
+	if moving_items.is_empty():
+		return
 	moving_items.erase(item)
 	if moving_items.is_empty():
 		advance_done.emit()
-
+	
