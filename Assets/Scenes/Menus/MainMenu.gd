@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var main_node = $/root/Main
 
-@onready var tutorial_button = $Control/VBoxContainer/HBoxContainer2/TutorialButton
-@onready var sound_button = $Control/VBoxContainer/HBoxContainer2/SoundButton
+@onready var tutorial_button = $TextureRect/Control/VBoxContainer/HBoxContainer2/TutorialButton
+@onready var sound_button = $TextureRect/Control/VBoxContainer/HBoxContainer2/SoundButton
 @onready var soundEngine = $/root/Main/SoundEngine
 
 func _ready():

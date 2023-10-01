@@ -1,14 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd4c8ihmoa5ut"]
+[gd_scene load_steps=6 format=3 uid="uid://dd4c8ihmoa5ut"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Menus/MainMenu.gd" id="1_fqnpw"]
-[ext_resource type="PackedScene" uid="uid://dcnw3g5iqi7j7" path="res://Background.tscn" id="2_3w6b5"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_iqop4"]
-font_size = 128
-outline_size = 24
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 64
-shadow_color = Color(0.12549, 0.12549, 0.12549, 0.576471)
+[ext_resource type="PackedScene" uid="uid://b6ofqxhwlg1l5" path="res://Background.tscn" id="2_3w6b5"]
+[ext_resource type="Texture2D" uid="uid://cvyjagb67blmx" path="res://Assets/Images/skin.jpg" id="2_7s2s8"]
+[ext_resource type="Texture2D" uid="uid://b286nxhx4s2l" path="res://Assets/Images/logo.png" id="3_ahl5p"]
+[ext_resource type="FontFile" uid="uid://bcaj2ff04m3yp" path="res://Assets/Fonts/TheBeardedSailor-Regular.otf" id="4_8istj"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_fqnpw")
@@ -22,88 +18,103 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 116.0
+offset_right = 1181.0
+offset_bottom = 798.0
+texture = ExtResource("2_7s2s8")
+
+[node name="Control" type="Control" parent="TextureRect"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 800.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/Control"]
 layout_mode = 0
-offset_right = 1280.0
+offset_right = 1064.0
 offset_bottom = 800.0
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 200)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_font_sizes/font_size = 128
-text = "FISH 'N' SHIPS"
-label_settings = SubResource("LabelSettings_iqop4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TitleSpacer" type="Control" parent="Control/VBoxContainer"]
+[node name="TitleSpacer2" type="Control" parent="TextureRect/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/Control/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="LeftButtonSpacer" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="LeftButtonSpacer" type="Control" parent="TextureRect/Control/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StartGameButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("3_ahl5p")
+
+[node name="RightButtonSpacer" type="Control" parent="TextureRect/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleSpacer" type="Control" parent="TextureRect/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftButtonSpacer" type="Control" parent="TextureRect/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StartGameButton" type="Button" parent="TextureRect/Control/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 2.08165e-12)
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.47451, 0.643137, 1, 0.596078)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("4_8istj")
 theme_override_font_sizes/font_size = 48
 text = "Start game"
 
-[node name="RightButtonSpacer" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="RightButtonSpacer" type="Control" parent="TextureRect/Control/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BottomSpacer" type="Control" parent="Control/VBoxContainer"]
+[node name="BottomSpacer" type="Control" parent="TextureRect/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LeftButtonSpacer" type="Control" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="LeftButtonSpacer" type="Control" parent="TextureRect/Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TutorialButton" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="TutorialButton" type="Button" parent="TextureRect/Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_8istj")
 theme_override_font_sizes/font_size = 31
 text = "Tutorial: On"
 
-[node name="SoundButton" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="SoundButton" type="Button" parent="TextureRect/Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_8istj")
 theme_override_font_sizes/font_size = 31
 text = "Sounds: On"
 
-[node name="RightButtonSpacer" type="Control" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="RightButtonSpacer" type="Control" parent="TextureRect/Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="Control/VBoxContainer"]
+[node name="Control" type="Control" parent="TextureRect/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_3w6b5")]
 
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="TextureRect/Control/VBoxContainer/HBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="TextureRect/Control/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="TextureRect/Control/VBoxContainer/HBoxContainer2/SoundButton" to="." method="_on_sound_button_pressed"]
