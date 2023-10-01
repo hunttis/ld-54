@@ -12,8 +12,8 @@ extends Node2D
 var createFishCooldownMAX = 2
 var createFishCooldown = 2
 
-var createFishingShipCooldownMAX = 2
-var createFishingShipCooldown = 2
+var createFishingShipCooldownMAX = 5
+var createFishingShipCooldown = 5
 
 var createPirateCooldownMAX = 2
 var createPirateCooldown = 2
@@ -36,7 +36,7 @@ func _ready() -> void:
 	
 	var pirate_ship = pirate_scene.instantiate()
 	place_typed_item_grid(4, 1, pirate_ship)
-		
+	
 	gridContainer.columns = Global.columns
 	for i in range(0, Global.columns * Global.rows):
 		var cell = grid_cell_scene.instantiate()
@@ -113,9 +113,9 @@ func _on_item_destroyed(item: Item):
 func advance() -> void:
 	print("advance")
 	
+	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
 	move_typed_items_to_direction(Fish, Vector2i.LEFT)
 	move_typed_items_to_direction(PirateShip, Vector2i.DOWN)
-	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
 	create_items()
 
 	

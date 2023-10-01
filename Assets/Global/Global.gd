@@ -8,7 +8,6 @@ var fish: int = 0
 var hunger: int = 0
 var village_health: int = 5
 
-
 func _ready():
 	pass
 
