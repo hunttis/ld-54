@@ -18,3 +18,6 @@ func on_collide(other: Item):
 		other.destroy()
 	if is_instance_of(other, Fish):
 		other.destroy()
+	if is_instance_of(other, Rock):
+		other.destroy()
+		self.destroy()

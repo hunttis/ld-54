@@ -4,6 +4,7 @@ extends Node2D
 @onready var fishing_ship_scene = preload("res://Assets/Scenes/Items/FishingShip.tscn")
 @onready var fish_scene = preload("res://Assets/Scenes/Items/Fish.tscn")
 @onready var pirate_scene = preload("res://Assets/Scenes/Items/PirateShip.tscn")
+@onready var rock_scene = preload("res://Assets/Scenes/Items/Rock.tscn")
 @onready var items_node = $Items
 
 @onready var grid_cell_scene = preload("res://Assets/Scenes/grid_cell.tscn")
@@ -17,6 +18,9 @@ var createFishingShipCooldown = 5
 
 var createPirateCooldownMAX = 2
 var createPirateCooldown = 2
+
+var createRockCooldownMAX = 5
+var createRockCooldown = 2
 
 var oceanCurrentDirection := Vector2i.ZERO
 var grid_gap: int = 0
@@ -36,6 +40,9 @@ func _ready() -> void:
 	
 	var pirate_ship = pirate_scene.instantiate()
 	place_typed_item_grid(4, 1, pirate_ship)
+
+	var rock = rock_scene.instantiate()
+#	place_typed_item_grid(5, 4, rock)
 	
 	gridContainer.columns = Global.columns
 	for i in range(0, Global.columns * Global.rows):
@@ -87,6 +94,7 @@ func advance() -> void:
 	move_typed_items_to_direction(FishingShip, oceanCurrentDirection)	
 	move_typed_items_to_direction(Fish, Vector2i.LEFT)
 	move_typed_items_to_direction(PirateShip, Vector2i.DOWN)
+	move_typed_items_to_direction(Rock, Vector2i.LEFT)
 	create_items()
 
 	
@@ -131,6 +139,7 @@ func create_items() -> void:
 	createFishCooldown -= 1
 	createFishingShipCooldown -= 1
 	createPirateCooldown -= 1
+	createRockCooldown -= 1
 	
 	if createFishCooldown <= 0:
 		createFishCooldown = createFishCooldownMAX
@@ -156,5 +165,11 @@ func create_items() -> void:
 			var new_item = fishing_ship_scene.instantiate()
 			place_typed_item_grid(0, fishing_row, new_item)
 	
-	
+	if createRockCooldown <= 0:
+		createRockCooldown = createRockCooldownMAX
+		var points = items.random_empty_points(1)
+		
+		if points.size() == 1:
+			var new_item = rock_scene.instantiate()
+			place_typed_item_grid(points[0].x, points[0].y, new_item)
 		

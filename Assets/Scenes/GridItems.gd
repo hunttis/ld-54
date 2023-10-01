@@ -96,13 +96,15 @@ func random_empty_point_on_row(row_number: int) -> int:
 	
 
 func random_empty_points(max_count: int) -> Array[Vector2i]:
-	var points = _points.duplicate()
+	var points: Array[Vector2i] = []
+	for point in _points:
+		points.push_back(Vector2i(point))
 	points.shuffle()
-	var result = []
+	var result: Array[Vector2i] = []
 	for point in points:
 		var item = get_at(point.x, point.y)
 		if not item:
-			result.push(point)
+			result.push_back(point)
 		if result.size() >= max_count:
 			return result
 	return result

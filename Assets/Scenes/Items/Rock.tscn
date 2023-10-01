@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6oi3a07xq2s7"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Item.gd" id="1_5ilxv"]
+[ext_resource type="Texture2D" uid="uid://cm0xuy2v7qkb0" path="res://Assets/Images/star.png" id="1_cmjro"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm1af"]
+atlas = ExtResource("1_cmjro")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ytwyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vm1af")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Rock" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ytwyj")
+script = ExtResource("1_5ilxv")
