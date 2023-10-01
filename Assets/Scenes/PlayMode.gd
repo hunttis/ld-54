@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var grid: Grid = $Grid
+@onready var soundEngine = $/root/Main/SoundEngine
 
 enum Turn {
 	Player,
@@ -29,6 +30,7 @@ func _input(event: InputEvent) -> void:
 			_play_player_turn(Vector2i.LEFT)
 
 func _play_player_turn(direction: Vector2i):
+	soundEngine.play_got_fish()
 	_run_turn(FishingShip, direction)
 
 func _run_turn(item_type: Variant, direction: Vector2):
