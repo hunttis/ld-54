@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://03u515hakiy5"]
+[gd_scene load_steps=5 format=3 uid="uid://03u515hakiy5"]
 
 [ext_resource type="Texture2D" uid="uid://g3etlabtiqy4" path="res://Assets/Images/fish.png" id="1_l4ue0"]
 [ext_resource type="Script" path="res://Assets/Scenes/Items/Fish.gd" id="2_8f338"]
+[ext_resource type="Script" path="res://Assets/Scenes/Floating.gd" id="3_mlvdo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j4qk2"]
 animations = [{
@@ -14,7 +15,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Fish" type="AnimatedSprite2D"]
+[node name="Fish" type="Node2D"]
+script = ExtResource("2_8f338")
+
+[node name="FishSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_j4qk2")
-script = ExtResource("2_8f338")
+script = ExtResource("3_mlvdo")
