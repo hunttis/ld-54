@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=4 format=3 uid="uid://iglduxfsjxr"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
+[ext_resource type="Script" path="res://Assets/Global/SoundEngine.gd" id="2_7lwyg"]
+[ext_resource type="AudioStream" uid="uid://cqp678fos3vtv" path="res://Assets/Audio/LD.mp3" id="3_k3wlk"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_5wul1")
+
+[node name="CurrentScreen" type="Node2D" parent="."]
+
+[node name="SoundEngine" type="Node" parent="."]
+script = ExtResource("2_7lwyg")
+
+[node name="Music" type="AudioStreamPlayer" parent="SoundEngine"]
+stream = ExtResource("3_k3wlk")
