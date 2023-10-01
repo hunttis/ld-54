@@ -4,15 +4,17 @@ extends Node2D
 @onready var soundEngine = $/root/Main/SoundEngine
 
 enum Turn {
+	Tutorial,
 	Player,
 	Fish,
 	Enemy
 }
 
-var turn := Turn.Player
+var turn := Turn.Tutorial
 
 func _ready() -> void:
 	grid.advance_done.connect(_on_turn_done)
+	
 
 func _process(delta):
 	pass
@@ -49,3 +51,7 @@ func _on_turn_done():
 	elif turn == Turn.Enemy:
 		turn = Turn.Player
 		grid.create_items()
+
+
+func _on_tutorial_tutorial_finished():
+	turn = Turn.Player

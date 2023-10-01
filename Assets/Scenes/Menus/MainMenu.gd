@@ -3,8 +3,12 @@ extends Node2D
 @onready var main_node = $/root/Main
 
 @onready var tutorial_button = $Control/VBoxContainer/HBoxContainer2/TutorialButton
-@onready var sound_button = $Control/VBoxContainer/HBoxContainer3/SoundButton
+@onready var sound_button = $Control/VBoxContainer/HBoxContainer2/SoundButton
 @onready var soundEngine = $/root/Main/SoundEngine
+
+func _ready():
+	tutorial_button.text = "Tutorial: On" if Global.show_tutorial else "Tutorial: Off"
+	sound_button.text = "Sounds: Off" if soundEngine.is_muted() else "Sounds: On"
 
 func _on_start_game_button_pressed():
 	main_node.change_screen(Global.Screens.PLAY_MODE)

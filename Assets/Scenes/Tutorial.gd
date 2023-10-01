@@ -7,11 +7,15 @@ extends Control
 @onready var movementTutorial = $VBoxContainer/MiddleTutorial/MovementTutorial
 
 
+signal tutorial_finished()
+
 var timer = 0
 var howLongToShowOneTutorial = 5
 
 func _ready():
 	hideAllTutorials()
+	if !Global.show_tutorial:
+		tutorial_finished.emit()
 
 func _process(delta):
 	timer += delta
@@ -33,6 +37,8 @@ func _process(delta):
 			movementTutorial.visible = true
 		elif timer < howLongToShowOneTutorial * 6:
 			hideAllTutorials()
+			tutorial_finished.emit()
+			Global.show_tutorial = false
 
 func hideAllTutorials():
 		pirateTutorial.visible = false

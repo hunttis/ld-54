@@ -17,3 +17,5 @@ position = Vector2(143, 1)
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_bfok7")]
 
 [node name="Tutorial" parent="." instance=ExtResource("5_pdiex")]
+
+[connection signal="tutorial_finished" from="Tutorial" to="." method="_on_tutorial_tutorial_finished"]
