@@ -18,4 +18,5 @@ animations = [{
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_sg3em")
 script = ExtResource("1_p5f83")
+state = null
 health = 3
