@@ -1,9 +1,7 @@
-extends "res://Assets/Scenes/Item.gd"
+extends "res://Assets/Scenes/Floating.gd"
 
 class_name PirateShip
 
-func _ready():
-	self.modulate = Color.CRIMSON
 
 func finished_moving():
 	Global.village_attacked(1)
