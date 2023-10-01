@@ -8,6 +8,12 @@ var fish: int = 0
 var hunger: int = 0
 var village_health: int = 5
 
+enum Screens {
+	MAIN_MENU,
+	GAME_OVER,
+	PLAY_MODE
+}
+
 func _ready():
 	pass
 

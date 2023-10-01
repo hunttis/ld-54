@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://iglduxfsjxr"]
+[gd_scene load_steps=2 format=3 uid="uid://iglduxfsjxr"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_5wul1"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_5wul1")
+
+[node name="CurrentScreen" type="Node2D" parent="."]

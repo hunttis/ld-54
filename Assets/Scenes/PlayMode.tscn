@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf82stybw5r5g"]
+[gd_scene load_steps=5 format=3 uid="uid://cf82stybw5r5g"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/PlayMode.gd" id="1_2god3"]
 [ext_resource type="PackedScene" uid="uid://bdgsptuj5gtfj" path="res://Assets/Scenes/Grid.tscn" id="1_i5qmb"]
 [ext_resource type="PackedScene" uid="uid://dgpv1g6tdho7a" path="res://Assets/UI/UI.tscn" id="2_m27sc"]
-[ext_resource type="PackedScene" uid="uid://dcnw3g5iqi7j7" path="res://Background.tscn" id="4_bfok7"]
-[ext_resource type="AudioStream" uid="uid://cqp678fos3vtv" path="res://Assets/Audio/LD.mp3" id="5_k5gpi"]
+[ext_resource type="PackedScene" path="res://Background.tscn" id="4_bfok7"]
 
 [node name="PlayMode" type="Node2D"]
 script = ExtResource("1_2god3")
@@ -15,7 +14,3 @@ position = Vector2(143, 1)
 [node name="UI" parent="." instance=ExtResource("2_m27sc")]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_bfok7")]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_k5gpi")
-volume_db = -80.0
