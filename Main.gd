@@ -14,19 +14,29 @@ var playmode_screen
 @export var default_screen: Global.Screens = Global.Screens.PLAY_MODE
 
 func _ready():
-	gameover_screen = gameover_scene.instantiate()
-	mainmenu_screen = mainmenu_scene.instantiate()
-	playmode_screen = playmode_scene.instantiate()
+	change_screen(default_screen)
+	#%SoundEngine.play_music()
 
-	change_screen(default_screen)	
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("ui_up"):
+#		change_screen(Global.Screens.PLAY_MODE)
+#	elif event.is_action_pressed("ui_right"):
+#		change_screen(Global.Screens.GAME_OVER)
+#	elif event.is_action_pressed("ui_down"):
+#		change_screen(Global.Screens.MAIN_MENU)
+#	elif event.is_action_pressed("ui_left"):
 
 func change_screen(target_screen: Global.Screens):
+
 	if current_screen.get_child(0):
 		current_screen.remove_child(current_screen.get_child(0))
 
 	if target_screen == Global.Screens.MAIN_MENU:
+		mainmenu_screen = mainmenu_scene.instantiate()
 		current_screen.add_child(mainmenu_screen)
 	elif target_screen == Global.Screens.PLAY_MODE:
+		playmode_screen = playmode_scene.instantiate()
 		current_screen.add_child(playmode_screen)
 	elif target_screen == Global.Screens.GAME_OVER:
+		gameover_screen = gameover_scene.instantiate()
 		current_screen.add_child(gameover_screen)

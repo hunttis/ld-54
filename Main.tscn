@@ -10,6 +10,7 @@ script = ExtResource("1_5wul1")
 [node name="CurrentScreen" type="Node2D" parent="."]
 
 [node name="SoundEngine" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_7lwyg")
 
 [node name="Music" type="AudioStreamPlayer" parent="SoundEngine"]

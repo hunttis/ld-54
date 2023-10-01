@@ -18,6 +18,8 @@ var POINTS__FISHING_SHIP_COLLISION_WITH_A_ROCK = -10
 
 var game_in_progress = true
 
+var show_tutorial = true
+
 enum Screens {
 	MAIN_MENU,
 	GAME_OVER,
